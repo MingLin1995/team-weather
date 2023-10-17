@@ -1,34 +1,15 @@
-// let records=null;
-// fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0002-001?Authorization="+CWB_API_KEY).then((response)=>{
-// 	return response.json();
-// }).then((data)=>{
-// 	records=data.records;
-// 	renderRaining(0);
-// });
-// function renderRaining(page){
-// 	let startIndex=page*10;
-// 	let endIndex=(page+1)*10;
-// 	const container=document.querySelector("#raining");
-// 	for(let i=startIndex;i<endIndex;i++){
-// 		const location=records.location[i];
-// 		const item=document.createElement("div");
-// 		item.className="location";
-// 		const town=document.createElement("div");
-// 		town.className="town";
-// 		town.textContent=location.parameter[0].parameterValue+"、"+location.parameter[2].parameterValue;
-// 		const amount=document.createElement("amount");
-// 		amount.className="amount";
-// 		amount.textContent=location.weatherElement[6].elementValue+" mm";
-// 		item.appendChild(town);
-// 		item.appendChild(amount);
-// 		container.appendChild(item);
-// 	}
-// }
+//自己申請帳號就有了
+const apiKey = "CWA-C5FE3759-4C7F-4E48-ADEA-8581BA76A0A2";
+
+//取得當前縣市名稱
+const countyElement = document.getElementById("county");
+const countyValue = countyElement.textContent;
 
 //  日期 ＆ 時間
 const dateElement = document.getElementById("date");
 const timeElement = document.getElementById("time");
 
+//今天日期
 function getCurrentDate() {
   const now = new Date();
 
@@ -41,6 +22,7 @@ function getCurrentDate() {
   return nowDate;
 }
 
+//明天日期
 function getNextDate() {
   const now = new Date();
 
@@ -53,6 +35,7 @@ function getNextDate() {
   return nextDate;
 }
 
+//當下時間
 function getCurrentTime() {
   const now = new Date();
 
@@ -64,10 +47,12 @@ function getCurrentTime() {
   return currentTime;
 }
 
+//日期為個位數，就補0
 function formatNumber(number) {
   return number < 10 ? `0${number}` : number;
 }
 
+//更新現在時間
 function updateDateTimeElements() {
   const nowDate = getCurrentDate();
   const currentTime = getCurrentTime();
@@ -76,15 +61,11 @@ function updateDateTimeElements() {
   timeElement.textContent = `現在時間：${currentTime}`;
 }
 
+//每秒更新一次現在時間
 setInterval(updateDateTimeElements, 1000);
-
-const countyElement = document.querySelector(".county");
-const countyValue = countyElement.textContent;
 
 // 當天天氣
 // https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${key}
-
-const apiKey = "CWB-6DB1B8BA-C3F5-49F7-8443-999865A34532"; // 先用別人的
 
 function getWeatherData() {
   const nowDate = getCurrentDate();
@@ -222,3 +203,46 @@ async function updateWeather36HElements() {
 
 updateWeatherElements();
 updateWeather36HElements();
+
+//日出、日落
+function getAstronomicalData() {
+  //自己去申請帳號就有了
+
+  const Today = new Date(); //月份是從0開始計算，所以+1
+  const nowDate = getCurrentDate();
+  const nextDate = `${Today.getFullYear()}-${Today.getMonth() + 1}-${
+    Today.getDate() + 1
+  }`;
+
+  //yyyy-MM-dd
+  const apiUrl = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/A-B0062-001?Authorization=${apiKey}&limit=365&offset=0&format=JSON&CountyName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
+
+  fetch(apiUrl, { method: "GET" })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`狀態碼： ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      //   console.log(data);
+      //   console.log(data.records);
+      //   console.log(data.records.locations.location[0].time[0].SunRiseTime);
+      const astronomicalData = data.records.locations.location[0].time[0];
+      getSunRiseSet(astronomicalData);
+    })
+    .catch((error) => {
+      console.error("發生錯誤：", error);
+    });
+}
+
+function getSunRiseSet(astronomicalData) {
+  const sunRiseTimeElement = document.getElementById("sunRiseTime");
+  const sunSetTimeElement = document.getElementById("sunSetTime");
+  const sunRiseTime = astronomicalData.SunRiseTime;
+  const sunSetTime = astronomicalData.SunSetTime;
+  sunRiseTimeElement.innerHTML = `日出： ${sunRiseTime}`;
+  sunSetTimeElement.innerHTML = `日落： ${sunSetTime}`;
+}
+
+getAstronomicalData();
