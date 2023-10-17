@@ -1,7 +1,7 @@
 //API使用說明：https://drive.google.com/file/d/13kPG4SJ_4IQI2mVBK_-i422U41BUb-d5/view
 //API https://data.moenv.gov.tw/swagger/#/%E5%A4%A7%E6%B0%A3/get_aqx_p_432
-getAQIData(); //取得API資料
 
+//取得API資料
 function getAQIData() {
   //自己去申請帳號就有了
   const apiKey = "4a670a0d-e63d-4322-a733-4c3da2fd5c86";
@@ -25,9 +25,9 @@ function getAQIData() {
     });
 }
 
-//取得該縣市區域資訊
+//取得該縣市“區域”
 function getSiteSelect(data) {
-  const countyElement = document.querySelector(".county");
+  const countyElement = document.getElementById("county");
   const countyValue = countyElement.textContent;
   const sitenameSelect = document.getElementById("sitenameSelect");
 
@@ -52,6 +52,7 @@ function getSiteSelect(data) {
   });
 }
 
+//取出AQI相關資料
 function getInformation(data) {
   const sitenameSelect = document.getElementById("sitenameSelect");
   const informationElement = document.getElementById("information");
@@ -63,3 +64,5 @@ function getInformation(data) {
   // 找到符合 county 和 sitename 的資料，顯示相關資訊
   informationElement.innerHTML = `AQI: ${siteData.aqi}, Pollutant: ${siteData.pollutant}, Status: ${siteData.status}`;
 }
+
+getAQIData(); //取得API資料
