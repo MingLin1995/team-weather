@@ -17,19 +17,22 @@
                 </div>
             </div>
             <div class="container-xl my-5 d-flex flex-wrap flex-grow-1" >
-                <div class="col-12 col-xl-6 order-2 order-xl-1 d-flex flex-column justify-content-center" style=" background-color:gray;">
-                    <div class="rounded  bg-white p-2">
+                <div class="col-12 col-xl-6 order-2 order-xl-1 d-flex flex-column justify-content-center">
+                    <div class="rounded  bg-white p-2" style="border: 1px solid #d0d0d0;">
                         <!-- 日期和縣市 -->
                         <div class="d-flex ">
                             <div class="col-5 fs-1" style="height: 60px; text-align: center;" id="county">臺北市</div>
                             <div class="col-7 fs-4" style="height: 60px; text-align: center;" id="date"></div>
                         </div>
                         <!-- 天氣和溫度 -->
-                        <div class="d-flex"style="height: 180px;">
-                            <div class="col-5 d-flex flex-wrap" id="Wx">
-                                天氣狀態
+                        <div class="d-flex flex-wrap">
+                            <div class="col-12 col-xl-5 d-flex flex-wrap" >
+                                <div id="Wx">
+                                    天氣狀態
+                                </div>
+                                <img src="images/sunny.svg"/>
                             </div>
-                            <div class="col-7">
+                            <div class="col-12 col-xl-7">
                                 <div style="height: 60px;" id="T">溫度</div>
 
                                 <div class="d-flex" style="height: 60px;">
@@ -58,8 +61,8 @@
                         <!-- 空氣品質檢測-->
                         <div style="background-color:yellow;height: 150px;">
                             <select name="fruits" id="sitenameSelect">
-                                <select id="sitenameSelect"></select>
-                                <div id="information"></div>
+                                <option value="" disabled selected>請選擇觀測站</option>
+                                <option id="information"></option>
                             </select>
                         </div>
                     </div>
