@@ -183,18 +183,21 @@ async function updateWeather36HElements() {
   try {
     const weatherData36H = await getWeatherData36H();
     console.log(weatherData36H);
-    const container = document.getElementById("weatherDataContainer");
-    weatherData36H.forEach((item) => {
-      const weatherElement = document.createElement("div");
-      weatherElement.innerHTML = `
+    
+    weatherData36H.forEach((item, index) => {
+      const content = `
 	  	<div id="startTime">起始日期：${item.startTime}</div>
 	  	<div id="endTime">結束日期：${item.endTime}</div>
-		<div id="timeDescribe">日期描述：${item.timeDescribe}</div>
-		<div id="Wx">天氣現象：${item.Wx}</div>
-		<div id="T">溫度：${item.T} ℃</div>
-		<div id="PoP12h">降雨機率：${item.PoP12h} %</div>
-		<hr>`;
-      container.appendChild(weatherElement);
+		  <div id="timeDescribe">日期描述：${item.timeDescribe}</div>
+		  <div id="Wx">天氣現象：${item.Wx}</div>
+		  <div id="T">溫度：${item.T} ℃</div>
+		  <div id="PoP12h">降雨機率：${item.PoP12h} %</div>
+		  <hr>`;
+
+      const container = document.getElementById(`weatherData${index + 1}`);
+      if (container) {
+        container.innerHTML = content;
+      }
     });
   } catch (e) {
     console.log(e);
