@@ -105,10 +105,12 @@ async function updateWeatherElements() {
     const PoP6hElement = document.getElementById("PoP6h");
     const WsElement = document.getElementById("Ws");
 
-    WxElement.textContent = `天氣現象：${Wx}`;
-    TElement.textContent = `溫度：${T} ℃`;
-    PoP6hElement.textContent = `6小時降雨機率：${PoP6h} %`;
+    WxElement.textContent = `${Wx}天`;
+    TElement.textContent = `${T} ℃`;
+    PoP6hElement.textContent = `${PoP6h}%`;
     WsElement.textContent = `風速：${Ws} m/s`;
+
+    judgePoP6hElement()
   } catch (e) {
     console.log(e);
   }
@@ -272,3 +274,7 @@ if (mapElement) {
     }
   });
 }
+
+
+
+
