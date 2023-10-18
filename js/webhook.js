@@ -149,7 +149,7 @@ async function sendDataToZapier() {
           }
         ],
         "footer": {
-          "text": "👆 請注意以上天氣變化, special thanks to [PastLeo](https://pastleo.me/post/20221220-webgl-ironman-book)"
+          "text": "👆 請注意以上天氣變化, special thanks to [PastLeo](https://pastleo.me/)"
         },
         "image": {
           "url": `https://i.imgur.com/7Clp18f.jpg`
