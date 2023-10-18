@@ -1,9 +1,11 @@
+
+
 //自己申請帳號就有了
 const apiKey = "CWA-C5FE3759-4C7F-4E48-ADEA-8581BA76A0A2";
 
 //取得當前縣市名稱
 const countyElement = document.getElementById("county");
-const countyValue = countyElement.textContent;
+let countyValue;
 
 //  日期 ＆ 時間
 const dateElement = document.getElementById("date");
@@ -58,7 +60,7 @@ function updateDateTimeElements() {
   const currentTime = getCurrentTime();
 
   dateElement.textContent = `日期：${nowDate}`;
-  timeElement.textContent = `現在時間：${currentTime}`;
+  // timeElement.textContent = `現在時間：${currentTime}`;
 }
 
 //每秒更新一次現在時間
@@ -70,6 +72,7 @@ setInterval(updateDateTimeElements, 1000);
 function getWeatherData() {
   const nowDate = getCurrentDate();
   const nextDate = getNextDate();
+  countyValue = countyElement.textContent;
   const apiUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
 
   return fetch(apiUrl, { method: "GET" })
@@ -117,8 +120,9 @@ async function updateWeatherElements() {
 function getWeatherData36H() {
   const nowDate = getCurrentDate();
   const nextDate = getNextDate();
+  countyValue = countyElement.textContent;
   const apiUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
-
+  console.log("城市", countyValue);
   return fetch(apiUrl, { method: "GET" })
     .then((response) => {
       if (!response.ok) {
@@ -215,6 +219,7 @@ function getAstronomicalData() {
   }`;
 
   //yyyy-MM-dd
+  countyValue = countyElement.textContent;
   const apiUrl = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/A-B0062-001?Authorization=${apiKey}&limit=365&offset=0&format=JSON&CountyName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
 
   fetch(apiUrl, { method: "GET" })
@@ -246,3 +251,24 @@ function getSunRiseSet(astronomicalData) {
 }
 
 getAstronomicalData();
+
+// 选择地图元素
+let mapElement = document.querySelector(".map");
+console.log("地圖", mapElement);
+
+// 如果地图元素存在，则附加点击事件监听器
+if (mapElement) {
+  mapElement.addEventListener("click", async function () {
+    console.log("地图被点击");
+
+    // 更新天气数据
+    try {
+      await updateWeatherElements();
+      await updateWeather36HElements();
+      await getAstronomicalData();
+      await getAQIData();
+    } catch (error) {
+      console.error("更新天气数据时发生错误:", error);
+    }
+  });
+}
