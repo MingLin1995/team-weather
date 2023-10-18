@@ -31,10 +31,10 @@
                                     天氣狀態
                                 </div>
                                 <div class="col-7">
-                                    <div style="height: 60px;" >溫度</div>
+                                    <div style="height: 60px;" id="T">溫度</div>
 
                                     <div class="d-flex" style="height: 60px;">
-                                        <div class="float-left bg-success" style="width: 50%; height: 100%;" id="T">溫度</div>
+                                        <div class="float-left bg-success" style="width: 50%; height: 100%;" id="Ws">風速</div>
                                         <div class="float-right bg-warning" style="width: 50%; height: 100%;" id="PoP6h">降雨機率</div>
                                     </div>
 
@@ -58,17 +58,15 @@
                             </div>
                             <!-- 空氣品質-->
                             <div style="background-color:yellow;height: 150px;">
-                                <select name="fruits" id="sitenameSelect">
-                                    <option value="" disabled selected>請選擇觀測站</option>
-                                    <option id="information"></option>
-                                </select>
+                                <select id="sitenameSelect"></select>
+                                <div id="information"></div>
                             </div>
                             
                         </div>
                     </div>
                     <div class="col-12 col-xl-6 order-1 d-flex justify-content-center align-items-center " >
                         <div class="wrapper">
-                            <div class="map">
+                            <div class="map" style="background-color: black;">
                             <svg
                                 viewBox="0 0 400 535"
                                 xmlns="http://www.w3.org/2000/svg"
