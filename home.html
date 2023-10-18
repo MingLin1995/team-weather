@@ -22,7 +22,7 @@
                     <div class="rounded  bg-white p-2">
                         <!-- 日期和縣市 -->
                         <div class="d-flex ">
-                            <div class="col-5 fs-1" style="height: 60px; text-align: center;" id="county"></div>
+                            <div class="col-5 fs-1" style="height: 60px; text-align: center;" id="county">臺北市</div>
                             <div class="col-7 fs-4" style="height: 60px; text-align: center;" id="date"></div>
                         </div>
                         <!-- 天氣和溫度 -->
@@ -31,22 +31,22 @@
                                 天氣狀態
                             </div>
                             <div class="col-7">
-                                <div style="height: 60px;">溫度</div>
+                                <div style="height: 60px;" >溫度</div>
 
                                 <div class="d-flex" style="height: 60px;">
-                                    <div class="float-left bg-success" style="width: 50%; height: 100%;">溫度</div>
-                                    <div class="float-right bg-warning" style="width: 50%; height: 100%;">降雨機率</div>
+                                    <div class="float-left bg-success" style="width: 50%; height: 100%;" id="T">溫度</div>
+                                    <div class="float-right bg-warning" style="width: 50%; height: 100%;" id="PoP6h">降雨機率</div>
                                 </div>
 
                                 <div class="d-flex" style="height: 60px;">
-                                    <div class="float-left bg-warning" style="width: 50%; height: 100%;">日出</div>
-                                    <div class="float-right bg-info" style="width: 50%; height: 100%;">日落</div>
+                                    <div class="float-left bg-warning" style="width: 50%; height: 100%;" id="sunRiseTime">日出</div>
+                                    <div class="float-right bg-info" style="width: 50%; height: 100%;" id="sunSetTime">日落</div>
                                 </div>
                             </div>
                         </div>
                         <!-- 今天與明天與後天 -->
                         <div class="d-flex flex-wrap">
-                            <div class="col-12 col-xl-4" style="height: 150px; background-color: aqua;">
+                            <div class="col-12 col-xl-4" style="height: 150px; background-color: aqua;" >
                                 今夜明晨
                             </div>
                             <div class="col-12 col-xl-4" style="height: 150px; background-color:green;">
@@ -58,12 +58,9 @@
                         </div>
                         <!-- 空氣品質-->
                         <div style="background-color:yellow;height: 150px;">
-                            <select name="fruits">
-                                <option value="" disabled selected>Select your fruit</option>
-                                <option value="apple">Apple</option>
-                                <option value="banana">Banana</option>
-                                <option value="cherry">Cherry</option>
-                                <option value="date">Date</option>
+                            <select name="fruits" id="sitenameSelect">
+                                <option value="" disabled selected>請選擇觀測站</option>
+                                <option id="information"></option>
                             </select>
                         </div>
                         
@@ -324,7 +321,7 @@
         </div>
         <div class=" footer container-fluid header px-3 py-2  text-center">
             <div class="fw-bold mt-1 mb-2 footer_title fs-4">COPYRIGHT © 2023 臺灣天氣預測</div>
-            <div class="mb-1 fs-10">劉宣甫、林佑銘、鄒柏軒、陳慧樺、王柏淵</div>
+            <div class="mb-1 fs-10">劉宣甫、林右銘、鄒柏軒、陳慧樺、王柏淵</div>
             <div class="mb-1 fs-10 ">
                 資料來源：
                 <a
@@ -339,6 +336,5 @@
 
     <script src="js/raining.js"></script>
     <script src="js/AQI.js"></script>
-    <script src="js/Astronomical.js"></script>
 </body>
 </html>
