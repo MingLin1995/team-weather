@@ -3,12 +3,12 @@ body{
 }
 .header{
 	width: 100%;
-	background-color: rgb(59, 92, 141);
-	box-shadow: 3px 0 5px 5px #031a35;
+	/* background-color: rgb(59, 92, 141); */
+	/* box-shadow: 3px 0 5px 5px #031a35; */
 }
 .title{
 	font-size: 50px;
-	color: #fff;
+	/* color: #fff; */
 	font-family: "Comic Sans MS";
 	margin: auto 0;
 	cursor: pointer;
