@@ -4,16 +4,28 @@ document.addEventListener("DOMContentLoaded", function () {
   // 選擇地圖上的所有<path>元素
   let pathElements = document.querySelectorAll("path[data-name]");
 
+  console.log("pathElements", pathElements);
+
   // 創建 tooltip 元素的引用
-  var tooltip = document.querySelector(".tooltip");
+  let tooltip = document.querySelector(".tooltip");
+
+  // 獲取包裹 .tooltip 的 .wrapper 元素
+  let wrapper = document.querySelector(".wrapper");
 
   // 為每個<path>元素添加點擊事件監聽器
   pathElements.forEach(function (path) {
+    path.classList.remove("is-active");
+
     path.addEventListener("click", function (event) {
       updateWeatherElements();
       updateWeather36HElements();
       getAstronomicalData();
+
       console.log("地圖被點擊");
+
+      tooltip.textContent = "";
+      tooltip.style.display = "none";
+
       // 首先，從所有<path>元素中移除 'is-active' 類
       pathElements.forEach(function (innerPath) {
         innerPath.classList.remove("is-active");
@@ -36,17 +48,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // 添加滑鼠移動事件監聽器
     path.addEventListener("mousemove", function (e) {
       tooltip.textContent = path.getAttribute("data-name");
-      tooltip.style.left = `${e.pageX + 8}px`;
-      tooltip.style.top = `${e.pageY - 35}px`;
       tooltip.style.display = "block";
-      console.log("滑鼠移入");
+
+      // 計算相對於 .wrapper 的位置
+      let wrapperRect = wrapper.getBoundingClientRect();
+      tooltip.style.left = `${e.clientX - wrapperRect.left + 8}px`;
+      tooltip.style.top = `${e.clientY - wrapperRect.top - 35}px`;
+
+      console.log(tooltip.textContent, tooltip.style.left, tooltip.style.top);
     });
 
     // 添加滑鼠移出事件監聽器
     path.addEventListener("mouseout", function (e) {
       tooltip.textContent = "";
       tooltip.style.display = "none";
-      console.log("滑鼠移入");
+      console.log(tooltip.style.left, tooltip.style.top);
     });
   });
 });
