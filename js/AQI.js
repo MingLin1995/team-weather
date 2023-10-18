@@ -28,7 +28,7 @@ function getAQIData() {
 //取得該縣市“區域”
 function getSiteSelect(data) {
   const countyElement = document.getElementById("county");
-  const countyValue = countyElement.textContent;
+  let countyValue = countyElement.textContent;
   const sitenameSelect = document.getElementById("sitenameSelect");
 
   // 取得符合選擇 county 的 sitename 選項
@@ -36,6 +36,7 @@ function getSiteSelect(data) {
     .filter((item) => item.county === countyValue)
     .map((item) => item.sitename);
 
+  sitenameSelect.innerHTML = "";
   // 將 sitename 選項加入選單
   sitenamesForCounty.forEach((sitename) => {
     const option = document.createElement("option");
@@ -61,6 +62,9 @@ function getInformation(data) {
   const siteData = data.find((item) => item.sitename === sitenameSelect.value);
   console.log(siteData);
 
+  if (siteData.pollutant == "") {
+    siteData.pollutant = "無";
+  }
   // 找到符合 county 和 sitename 的資料，顯示相關資訊
   informationElement.innerHTML = `AQI: ${siteData.aqi}, Pollutant: ${siteData.pollutant}, Status: ${siteData.status}`;
 }
