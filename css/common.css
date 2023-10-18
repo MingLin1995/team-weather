@@ -1,3 +1,41 @@
 body{
 	font-size:20px;
 }
+.header{
+	width: 100%;
+	/* background-color: rgb(59, 92, 141); */
+	/* box-shadow: 3px 0 5px 5px #031a35; */
+}
+.title{
+	font-size: 50px;
+	/* color: #fff; */
+	font-family: "Comic Sans MS";
+	margin: auto 0;
+	cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    .title{ font-size: 40px;}
+}
+
+@media (max-width: 600px) {
+    .title{ font-size:  20px;}
+}
+
+.footer{
+	background-color: rgb(226, 226, 226);
+    font-family: var(--chinese-font);
+}
+
+.footer_title{
+	letter-spacing: 3px;
+}
+.footer_link{ color: #000;}
+
+.card_container{
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 5px 8px #4070ad;
+    padding: 10px 10px;
+}
+
