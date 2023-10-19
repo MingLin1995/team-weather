@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 為每個<path>元素添加點擊事件監聽器
   pathElements.forEach(function (path) {
-    path.classList.remove("is-active");
+    // path.classList.remove("is-active");
 
     path.addEventListener("click", function (event) {
       updateWeatherElements();
