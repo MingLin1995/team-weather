@@ -93,6 +93,29 @@ function changeWXImg(WxNum) {
   }
 }
 
+function changeWXImg36H(WxNum, imgId) {
+  const wxImg = document.getElementById(imgId);
+  if (WxNum == "01") {
+    wxImg.src = "images/sunny.svg";
+    // console.log("晴天 images/sunny.svg");
+  } else if (WxNum >= "02" && WxNum <= "03") {
+    wxImg.src = "images/sunCloudMorining.svg";
+    // console.log("晴天 多雲 images/sunCloudMorining.svg");
+  } else if (WxNum >= "04" && WxNum <= "07") {
+    wxImg.src = "images/cloud.svg";
+    // console.log("多雲 images/cloud.svg");
+  } else if (WxNum == "21") {
+    wxImg.src = "images/morningRain.svg";
+    // console.log("晴午後雷陣雨 images/morningRain.svg");
+  } else if (WxNum >= "22") {
+    wxImg.src = "images/rain.svg";
+    // console.log("雷陣雨 images/rain.svg");
+  } else {
+    wxImg.src = " images/cloudRain.svg";
+    // console.log("下雨 images/cloudRain.svg");
+  }
+}
+
 function changeWsImg(Ws) {
   const wsImg = document.getElementById("ws-img");
   //   Ws = 50
