@@ -22,7 +22,7 @@
 }
 .map svg {
   display: inline-block;
-  max-width: 100%;
+  max-width: 120%;
   width: 428.59px;
   height: 560px;
 
@@ -31,17 +31,17 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: transparent;
-    stroke: rgba(139, 80, 21, 0.8);
-    stroke-width: 1px;
+    stroke: rgb(219, 108, 101);
+    stroke-width: 2px;
     stroke-miterlimit: 10;
     cursor: pointer;
 
     &:hover {
-        fill: rgba(236, 181, 126, 0.8);
+        fill: rgba(219, 108, 101, 0.4);
     }
   }
   .is-active {
-    fill: rgba(250, 159, 66, 0.8);
+    fill: rgba(219, 108, 101, 0.8);
   }
 }
 
@@ -49,15 +49,16 @@
   display: none;
   position: absolute;
   z-index: 1000;
-  color: rgb(150, 100, 31);
+  color: white;
   text-align: center;
   width: 80px;
   height: 35px;
   line-height: 35px;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(219, 108, 101, 0.5);
   /* 覆蓋 bootstrap 的 opacity: 0 */
   opacity: 1;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 576px) {

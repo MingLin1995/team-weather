@@ -20,9 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
       updateWeatherElements();
       updateWeather36HElements();
       getAstronomicalData();
-
-      console.log("地圖被點擊");
-
       tooltip.textContent = "";
       tooltip.style.display = "none";
 
