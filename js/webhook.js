@@ -6,22 +6,41 @@ document.addEventListener("DOMContentLoaded", function () {
       const cityName = e.currentTarget.getAttribute("data-name");
 
       const wx = document.querySelector("#Wx");
-      const weatherImage = wx.nextElementSibling
+      // const weatherImage = wx.nextElementSibling
+      const weatherImage = document.querySelector("#wx-img");
 
       weatherImage.addEventListener("click", function (e) {
         sendDataToZapier(cityName);
       });
+
+      const selectElement = document.querySelector("#sitenameSelect");
+      let selectedOption;
+    
+      selectElement.addEventListener("change", function() {
+          selectedOption = selectElement.value;
+      });
+    
+      const information = document.getElementById("information");
+
+      information.addEventListener("click", function (e) {
+        sendAirToZapier(cityName, selectedOption);
+      });
+     
+      const sunRiseTime = document.querySelector("#sunRiseTime");
+      const sunSetTime = document.querySelector("#sunSetTime");
+
+      sunRiseTime.addEventListener("click", function (e) {
+        sendSunToZapier(cityName, sunRiseTime, sunSetTime, true );
+      });
+      sunSetTime.addEventListener("click", function (e) {
+        sendSunToZapier(cityName, sunRiseTime, sunSetTime, false );
+      });
+
     });
   });
 });
 
-
-async function sendDataToZapier() {
-  const zapierWebhookURL = "https://hooks.zapier.com/hooks/catch/15050980/3sjsmi4/";
-
-  // County
-  const county = document.querySelector("#county").textContent;
-
+function timeCatch(night){
   const dateText = document.querySelector("#date").textContent;
   const removedPrefix = dateText.replace("日期：", "").trim();
   const dateParts = removedPrefix.split("-");
@@ -37,9 +56,52 @@ async function sendDataToZapier() {
   const minutes = now.getMinutes();
   const period = hours >= 12 ? "下午" : "上午";
   const currentHour = hours % 12 === 0 ? 12 : hours % 12;  // 將 24 小時制轉換為 12 小時制
-
+  if(hours >= 18 || hours < 6) {
+    night = true;
+  }
   // Time
   const currentTime = `${period} ${currentHour < 10 ? "0" : " "}${currentHour}:${minutes < 10 ? "0" : ""}${minutes}`;
+
+  return {
+    newDateStr,
+    currentTime,
+    night
+  };
+}
+
+async function sendDataToZapier(county) {
+  const zapierWebhookURL = "https://hooks.zapier.com/hooks/catch/15050980/3sjsmi4/";
+
+  // County
+  // const county = document.querySelector("#county").textContent;
+
+  const dateText = document.querySelector("#date").textContent;
+  const removedPrefix = dateText.replace("日期：", "").trim();
+  const dateParts = removedPrefix.split("-");
+  const year = dateParts[0];
+  const month = dateParts[1];
+  const day = dateParts[2];
+
+  let night = false;
+  const result = timeCatch(night);
+  const newDateStr = result.newDateStr;
+  const currentTime = result.currentTime;
+  night = result.night;
+
+  night = true;
+
+  let imgUrl, iconUrl, welcome;
+  if(night){
+    imgUrl = "https://i.imgur.com/C67obDr.png"
+    iconUrl = "https://i.imgur.com/C67obDr.png";
+    welcome = "晚安 🌛，";
+  } else {
+    imgUrl = "https://i.imgur.com/YsdUgwS.jpg"
+    iconUrl = "https://i.imgur.com/JkkfA8i.png";
+    welcome = "安安 🌞，";
+  }
+
+  
 
   // Wx image
   const wx = document.querySelector("#Wx");
@@ -105,33 +167,34 @@ async function sendDataToZapier() {
   const payload = {
     "content": `${newDateStr} ${currentTime}，${county}的天氣如下`,
     "username": "天空生氣人",
-    "avatar_url": "https://i.imgur.com/YsdUgwS.jpg",
+    "avatar_url": `${imgUrl}`,
     "embeds": [
       {
         "author": {
           "name": "The Sky goes nuts",
-          "icon_url": "https://i.imgur.com/JkkfA8i.png"
+          "icon_url": `${iconUrl}`
         },
         "title": "天空生氣氣報告",
-        "description": "天氣還好嗎？",
+        "description": `${welcome}, 天氣還好嗎？`,
+        "color": 16426522,
         "fields": [
           {
-            "name": "天氣",
+            "name": "☁️天氣",
             "value": `${wxStr}`,
             "inline": true
           },
           {
-            "name": "溫度",
+            "name": "🌡️ 溫度",
             "value": `${temperatureStr}`,
             "inline": true
           },
           {
-            "name": "風速",
+            "name": "🌬風速",
             "value": `${windSpeedStr}`,
             "inline": true
           },
           {
-            "name": "降雨率(6h)",
+            "name": "🌧️ 降雨率(6h)",
             "value": `${rainFall6hStr}`,
             "inline": true
           },
@@ -170,9 +233,246 @@ async function sendDataToZapier() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log("訊息發送成功:", data);
+      console.log("天氣訊息發送成功:", data);
     })
     .catch((error) => {
-      console.log("訊息發送失敗:", error);
+      console.log("天氣訊息發送失敗:", error);
     });
 };
+
+
+async function sendAirToZapier(cityName, selectedOption){
+  const zapierWebhookURL = "https://hooks.zapier.com/hooks/catch/15050980/3sjsmi4/";
+
+  let night = false;
+  const result = timeCatch(night);
+  const newDateStr = result.newDateStr;
+  const currentTime = result.currentTime;
+  night = result.night;
+
+  let imgUrl, iconUrl;
+  if(night){
+    imgUrl = "https://i.imgur.com/C67obDr.png"
+    iconUrl = "https://i.imgur.com/C67obDr.png";
+  } else {
+    imgUrl = "https://i.imgur.com/YsdUgwS.jpg"
+    iconUrl = "https://i.imgur.com/JkkfA8i.png";
+  }
+
+  console.log("selectedOption:", selectedOption);
+
+  const informationDiv = document.getElementById("information").textContent;
+
+  // 使用正則表達式來匹配並提取 AQI、Pollutant 和 Status
+  const regex = /AQI: (\d+), Pollutant: (.+), Status: (.+)/;
+  const matches = informationDiv.match(regex);
+
+  console.log("matches:", matches);
+
+  const aqi = matches[1]; 
+  const pollutant = matches[2]; 
+  const status = matches[3];
+  
+  console.log(`AQI: ${aqi}`);
+  console.log(`Pollutant: ${pollutant}`);
+  console.log(`Status: ${status}`);
+
+  let caution, allergicCaution;
+
+  if (status === "良好") {
+     caution, allergicCaution = "正常戶外活動";
+  } else if (status === "普通") {
+    caution = "正常戶外活動";
+    allergicCaution = "注意咳嗽或呼吸急促";
+  } else if (status === "對敏感族群不健康") {
+    caution = "建議減少長時間劇烈運動";
+    allergicCaution = "建議減少戶外活動及體力消耗";
+  } else if (status === "對所有族群不健康") {
+    caution = "減少戶外活動";
+    allergicCaution = "建議留在室內並減少體力消耗"; 
+  } else if (status === "非常不健康") {
+     caution = "減少或停止戶外活動";
+      allergicCaution = "必須留在室內並減少體力消耗";
+  } else if (status === "危害") {
+    caution = "停止戶外活動、關緊門窗";
+    allergicCaution = "必須留在室內並減少體力消耗";
+  } 
+
+
+  const payload = {
+    "content": `${newDateStr} ${currentTime}，${cityName} ${selectedOption} 觀測站的空氣品質如下`,
+    "username": "空氣臭不臭",
+    "avatar_url": `${imgUrl}`,
+    "embeds": [
+      {
+        "author": {
+          "name": "The Air cuts the cheese",
+          "icon_url": `${iconUrl}`
+        },
+        "title": "空氣臭不臭偵信社",
+        "description": "空氣還好嗎？",
+        "color": 4437377,
+        "fields": [
+          {
+            "name": "🔢 空氣品質指標(AQI)",
+            "value": `${aqi}`,
+            "inline": true
+          },
+          {
+            "name": "🏭污染物",
+            "value": `${pollutant}`,
+            "inline": true
+          },
+          {
+            "name": "❓空氣品質",
+            "value": `${status}`,
+            "inline": true
+          },
+          {
+            "name": "😊 一般人的健康建議",
+            "value": `${caution}`
+          },
+          {
+            "name": "😣 敏感族群健康建議",
+            "value": `${allergicCaution}`
+          },
+        ],
+        "footer": {
+          "text": `👆 請尤其注意以上活動建議`
+        },
+        "image": {
+          "url": `https://i.imgur.com/4EUmVCg.png`
+        }
+      }
+    ]
+  };
+
+  await fetch(zapierWebhookURL, {
+    method: "POST",
+    headers: {
+      // "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("空氣訊息發送成功:", data);
+  })
+  .catch((error) => {
+    console.log("空氣訊息發送失敗:", error);
+  });
+}
+
+async function sendSunToZapier(cityName, sunRiseTime, sunSetTime, sunRise){
+
+  const zapierWebhookURL = "https://hooks.zapier.com/hooks/catch/15050980/3sjsmi4/";
+
+  const result = timeCatch();
+  const newDateStr = result.newDateStr;
+  const currentTime = result.currentTime;
+
+  const sunRiseTimeStr = convertTo12HourTime(sunRiseTime.textContent.replace( "日出：", "").trim());
+  const sunSetTimeStr = convertTo12HourTime(sunSetTime.textContent.replace( "日落：", "").trim());
+
+
+  let mainImgUrl, keyword ="";
+  if (sunRise) {
+    mainImgUrl = "https://i.imgur.com/UkkOa1y.jpg";
+    keyword = "出";
+  } else {
+    mainImgUrl = "https://i.imgur.com/7qwB1oy.jpg";
+    keyword = "落";
+  }
+
+  const payload = {
+    "content": `${newDateStr} ${currentTime}，${cityName} 今天的日${keyword}時間為`,
+    "username": "浪漫 na 機器人",
+    "avatar_url": "https://i.imgur.com/YsdUgwS.jpg",
+    "embeds": [
+      {
+        "author": {
+          "name": `Always look at the sun${keyword == "出" ? "rise 🌄 " : "set 🌇 "}; I will be there`,
+          "icon_url": "https://i.imgur.com/JkkfA8i.png"
+        },
+        "title": `日${keyword}獵手`,
+        "description": `想看日${keyword}嗎？`,
+        "color": 15746887,
+        "fields": [
+          {
+            "name": `日${keyword == "出" ? "出 🌄 " : "落 🌇 "}時間`,
+            "value": `${keyword == "出" ? sunRiseTimeStr : sunSetTimeStr}`,
+            "inline": true
+          },
+          {
+            "name": `日${keyword == "落" ? "出 🌄 " : "落 🌇 "}時間`,
+            "value": `${keyword == "落" ? sunRiseTimeStr : sunSetTimeStr}`,
+            "inline": true
+          },
+          {
+            "name": "🌹浪漫小語",
+            "value": `${keyword == "出" ? "畢竟，日出總是滿懷希望" : "每一次夕陽總總與眾不同。"}`
+          }
+        ],
+        "footer": {
+          "text": `👆 請享受美麗的日${keyword}`
+        },
+        "image": {
+          "url": `${mainImgUrl}`
+        }
+      }
+    ]
+  };
+  console.log("payload:", payload);
+
+  await fetch(zapierWebhookURL, {
+    method: "POST",
+    headers: {
+      // "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("日出日落訊息發送成功:", data);
+  })
+  .catch((error) => {
+    console.log("日出日落訊息發送失敗:", error);
+  });
+  
+}
+
+function convertTo12HourTime(time) {
+  const [hours, minutes] = time.split(":");
+  
+  // 將小時部分轉換為數字
+  const hour = parseInt(hours, 10);
+  
+  // 判斷時間是上午還是下午
+  let period;
+  if (hour < 1) {
+      period = "午夜";
+  } else if (hour < 6) {
+      period = "凌晨";
+  } else if(hour < 8) {
+      period = "清晨";
+  } else if (hour < 12) {
+      period = "上午";
+  } else if (hour < 13) {
+      period = "中午";
+  } else if (hour < 18) {
+      period = "下午";
+  } else if (hour < 23) {
+      period = "晚上";
+  } else if (hour < 24) {
+      period = "午夜";
+  }
+  
+  const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+  
+  const formattedTime = `${period} ${hour12}:${minutes}`;
+  
+  return formattedTime;
+}
+
+
+
