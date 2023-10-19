@@ -1,3 +1,7 @@
+*{
+    color: #432f2f;
+}
+
 @mixin shadow{
     border-radius: 10px;
     background: #FFFDFD;
@@ -17,22 +21,40 @@
     @include shadow;
     padding: 10px;
     margin: 10px;
+    max-width: 400px;
 }
 .main-rain {
     @include shadow;
     padding: 10px;
     margin: 10px;
+    max-width: 400px;
+    max-height: 200px;
+    overflow: hidden;
+
+    #PoP6h {
+        font-size: 200px;
+        overflow: hidden;
+        opacity: 0.2;
+        font-family: 'urbanist';
+        font-weight: 200;
+        margin-left: -40px;
+        margin-bottom: -10px;
+        color: #257096;
+    }
 }
 .main-sun {
     @include shadow;
     padding: 10px;
     margin: 10px;
+    max-width: 400px;
 }
 .main-date {
     @include shadow;
     padding: 10px;
+    padding-left: 30px;
     margin: 10px;
     margin-right: 20px;
+    max-width: 200px;
 }
 .main-wind {
     @include shadow;
@@ -40,27 +62,52 @@
     flex-direction: column;
     padding: 10px;
     margin: 10px;
+    max-width: 200px;
+
+    div {
+        font-size: 20px;
+    }
+
+    .main-date-wind {
+        display: flex;
+        justify-content: center;
+    }
 }
-.main-date-wind {
-    display: flex;
-    justify-content: center;
-}
+
 .main-timeline {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+//     display: flex;
+//     justify-content: space-around;
+//     gap: 20px;
+//     flex-wrap: wrap;
+text-align: center;
 }
 .main-forecast {
     @include shadow;
     position: relative;
     padding: 10px;
     margin: 10px;
+    text-align: left;
+
+    #T {
+        font-size: 35px;
+    }
+    #PoP12h {
+        font-size: 25px;
+        color: #26749b;
+        font-weight: 400;
+    }
+    #Wx {
+        font-size: 16px;
+    }
 }
 #weatherData1, #weatherData2, #weatherData3 {
     background-color: white;
     border: none;
-    padding: 5px;
-    margin: 0;
+    @include shadow;
+    position: relative;
+    padding: -50px;
+    width: 200px;
+    margin-right: 22px;
 }
 .main-AQI {
     width: 342px;
@@ -90,8 +137,16 @@
     border: none;
 }
 .main-sunImage {
+    text-align: center;
     margin-bottom: 10px;
 }
 .main-T {
-    font-size: 48px;
+    color: #795F5F;
+    font-size: 50px;
+}
+.main-AQI-left-area {
+    margin-right: 20px;
+}
+.main-site-word {
+    margin-left: 10px;
 }
