@@ -108,9 +108,8 @@ async function updateWeatherElements() {
     WxElement.textContent = `${Wx}天`;
     TElement.textContent = `${T} ℃`;
     PoP6hElement.textContent = `${PoP6h}%`;
-    WsElement.textContent = `風速：${Ws} m/s`;
-
-    judgePoP6hElement();
+    WsElement.textContent = `${Ws} m/s`;
+    judgePoP6hElement()
   } catch (e) {
     console.log(e);
   }

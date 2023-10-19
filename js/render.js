@@ -36,6 +36,7 @@ function getDayOfWeekName(){
 
     // 取得當前星期的名稱
     const dayOfWeekName = daysOfWeek[dayOfWeekNumber];
+    
     return dayOfWeekName
 }
 
@@ -48,10 +49,15 @@ function judgePoP6hElement(){
     const PoP6hElement = document.getElementById('PoP6h');
     const PoP6hElementString = PoP6hElement.textContent;
 
-
+    if(PoP6hElementString==""){
+        setTimeout(judgePoP6hElement,1000);
+    }
+    else{
     // 將百分比轉為數字（例如從"70%"轉為0.7）
     let PoP6hElementNumber = parseFloat(PoP6hElementString) / 100;
-    console.log( PoP6hElementNumber)
+    
 
+    }
 }
+
 
