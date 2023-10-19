@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 選擇地圖上的所有<path>元素
   let pathElements = document.querySelectorAll("path[data-name]");
 
-  console.log("pathElements", pathElements);
+  // console.log("pathElements", pathElements);
 
   // 創建 tooltip 元素的引用
   let tooltip = document.querySelector(".tooltip");
@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
       updateWeatherElements();
       updateWeather36HElements();
       getAstronomicalData();
+
+      cityName = event.currentTarget.getAttribute("data-name");
+      const pokemon = document.querySelector("#pokemon");
+      changePokemon(cityName, pokemon);
+
+      // console.log("地圖被點擊");
+
       tooltip.textContent = "";
       tooltip.style.display = "none";
 

@@ -1,7 +1,10 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const paths = document.querySelectorAll(".map path");
 
   paths.forEach(path => {
+
     path.addEventListener("click", function (e) {
       const cityName = e.currentTarget.getAttribute("data-name");
 
@@ -10,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const weatherImage = document.querySelector("#wx-img");
 
       weatherImage.addEventListener("click", function (e) {
+
+        console.log("以點擊");
         sendDataToZapier(cityName);
       });
 
@@ -28,11 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
      
       const sunRiseTime = document.querySelector("#sunRiseTime");
       const sunSetTime = document.querySelector("#sunSetTime");
+      const sunRiseImg = sunRiseTime.parentElement.nextElementSibling;
+      const sunSetImg = sunSetTime.parentElement.nextElementSibling;
 
-      sunRiseTime.addEventListener("click", function (e) {
+      console.log("sunRiseImg:", sunRiseImg);
+
+      sunRiseImg.addEventListener("click", function (e) {
         sendSunToZapier(cityName, sunRiseTime, sunSetTime, true );
       });
-      sunSetTime.addEventListener("click", function (e) {
+      sunSetImg.addEventListener("click", function (e) {
         sendSunToZapier(cityName, sunRiseTime, sunSetTime, false );
       });
 
@@ -41,12 +50,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function timeCatch(night){
-  const dateText = document.querySelector("#date").textContent;
-  const removedPrefix = dateText.replace("日期：", "").trim();
-  const dateParts = removedPrefix.split("-");
-  const year = dateParts[0];
-  const month = dateParts[1];
+
+  const year = document.querySelector("#year").textContent;
+  const monthDay = document.querySelector("#monthDay").textContent;
+  const weekDay = document.querySelector("#weekDay").textContent;
+
+  const monthMap = {
+    "Jan": "1",
+    "Feb": "2",
+    "Mar": "3",
+    "Apr": "4",
+    "May": "5",
+    "Jun": "6",
+    "Jul": "7",
+    "Aug": "8",
+    "Sep": "9",
+    "Oct": "10",
+    "Nov": "11",
+    "Dec": "12"
+  };
+
+  const regexMonthDay = /^([A-Za-z]+)\.(\d+)/;
+
+  const dateParts = monthDay.match(regexMonthDay);
+
+  // const dateText = document.querySelector("#date").textContent;
+  // const removedPrefix = dateText.replace("日期：", "").trim();
+  // const dateParts = removedPrefix.split("-");
+  // const year = dateParts[0];
+  const monthWord = dateParts[1];
   const day = dateParts[2];
+
+  const month = monthMap[monthWord];
 
   // Date
   const newDateStr = `${month}/${day}, ${year}`;
@@ -75,20 +110,11 @@ async function sendDataToZapier(county) {
   // County
   // const county = document.querySelector("#county").textContent;
 
-  const dateText = document.querySelector("#date").textContent;
-  const removedPrefix = dateText.replace("日期：", "").trim();
-  const dateParts = removedPrefix.split("-");
-  const year = dateParts[0];
-  const month = dateParts[1];
-  const day = dateParts[2];
-
   let night = false;
   const result = timeCatch(night);
   const newDateStr = result.newDateStr;
   const currentTime = result.currentTime;
   night = result.night;
-
-  night = true;
 
   let imgUrl, iconUrl, welcome;
   if(night){
@@ -105,7 +131,7 @@ async function sendDataToZapier(county) {
 
   // Wx image
   const wx = document.querySelector("#Wx");
-  const weatherImage = wx.nextElementSibling.src;
+  const weatherImage =document.querySelector("#wx-img");
 
   // Wx
   const wxContent = wx.textContent;
