@@ -55,7 +55,7 @@
 
                 </div>
                 <div class="col-12 col-xl-4 order-2 order-xl-1 d-flex flex-column justify-content-center  width-xl-560 ">
-                    <div class="rounded  bg-white p-2">
+                    <div class="rounded p-2">
                         <!-- 天氣、溫度、縣市 -->
 
                         <div class="main-dashboard d-flex" >
@@ -84,11 +84,11 @@
                         <div class="main-sun d-flex">
                             <div class=" col-6 py-1" >
                                 <div class="main-sunImage"><span id="sunRiseTime"></span> <span>AM</span></div>
-                                <img src="images/Sunrise.svg">
+                                <img class="sunrise-link" src="images/Sunrise.svg">
                             </div>
                             <div class="main-sunImage col-6 py-1">
                                 <div class="main-sunImage"><span id="sunSetTime"></span> <span>PM</span></div>
-                                <img src="images/Sunset.svg">
+                                <img class="sunset-link" src="images/Sunset.svg">
                             </div>
                         </div>
                             
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <!-- 空氣品質檢測-->
-                        <div>
+                        <div class="aqi-container">
                             <div class="main-AQI position-relative">
                                 <img id ="aqiIcon" src="" />
                                 <div class="main-AQI-inside py-3 px-3 rounded">
@@ -144,7 +144,6 @@
                                         </select>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
