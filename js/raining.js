@@ -210,7 +210,6 @@ async function updateWeather36HElements() {
       bottom: -30px;
       right: -30px;
       z-index: 3;
-      transform: scale(0.5);  
       opacity: 0.7;" src="images/Sunset.svg">`;
       const container = document.getElementById(`weatherData${index + 1}`);
       if (container) {
