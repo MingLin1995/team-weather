@@ -67,6 +67,7 @@ function getInformation(data) {
   }
   // 找到符合 county 和 sitename 的資料，顯示相關資訊
   informationElement.innerHTML = `AQI: ${siteData.aqi}, Pollutant: ${siteData.pollutant}, Status: ${siteData.status}`;
+  changeAQIImg(siteData.aqi);
 }
 
 getAQIData(); //取得API資料
