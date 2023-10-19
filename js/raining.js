@@ -100,7 +100,7 @@ async function updateWeatherElements() {
     const T = weatherData.weatherElement[3].time[0].elementValue[0].value;
     const PoP6h = weatherData.weatherElement[7].time[0].elementValue[0].value;
     const Ws = weatherData.weatherElement[8].time[0].elementValue[0].value;
-    console.log("風速Ws",Ws);
+    console.log("風速Ws", Ws);
 
     const WxElement = document.getElementById("Wx");
     const TElement = document.getElementById("T");
@@ -111,11 +111,10 @@ async function updateWeatherElements() {
     TElement.textContent = `${T} ℃`;
     PoP6hElement.textContent = `${PoP6h}%`;
     WsElement.textContent = `${Ws} m/s`;
-
-    judgePoP6hElement();
     changeWXImg(WxNum);
-    changeWsImg(Ws)
-
+    changeWsImg(Ws);
+    changePopImg(PoP6h);
+    changeTImg(T);
   } catch (e) {
     console.log(e);
   }
@@ -266,7 +265,6 @@ console.log("地圖", mapElement);
 // 如果地图元素存在，则附加点击事件监听器
 if (mapElement) {
   mapElement.addEventListener("click", async function () {
-
     // 更新天气数据
     try {
       await updateWeatherElements();

@@ -53,18 +53,22 @@ function getDayOfWeekName() {
 
 weekDayElement.textContent = getDayOfWeekName();
 
-function judgePoP6hElement() {
-  const PoP6hElement = document.getElementById("PoP6h");
-  const PoP6hElementString = PoP6hElement.textContent;
-
-  if (PoP6hElementString == "") {
-    setTimeout(judgePoP6hElement, 1000);
+function changePopImg(PoP6h) {
+  const image = document.getElementById("PoPImg");
+  if (PoP6h < 10) {
+    image.src = "images/PoP0.svg";
+  } else if (PoP6h >= 10 && PoP6h < 30) {
+    image.src = "images/PoP10.svg";
+  } else if (PoP6h >= 30 && PoP6h < 50) {
+    image.src = "images/PoP30.svg";
+  } else if (PoP6h >= 50 && PoP6h < 70) {
+    image.src = "images/PoP50.svg";
+  } else if (PoP6h >= 70 && PoP6h < 90) {
+    image.src = "images/PoP70.svg";
   } else {
-    // 將百分比轉為數字（例如從"70%"轉為0.7）
-    let PoP6hElementNumber = parseFloat(PoP6hElementString) / 100;
+    image.src = "images/PoP90.svg";
   }
 }
-
 
 function changeWXImg(WxNum) {
   const wxImg = document.getElementById("wx-img");
@@ -106,5 +110,18 @@ function changeWsImg(Ws) {
     wsImg.src = "images/wind30.svg";
   } else {
     wsImg.src = "images/wind50.svg";
+  }
+}
+
+function changeTImg(T) {
+  const image = document.getElementById("TImg");
+  if (T < 10) {
+    image.src = "images/temperature10.svg";
+  } else if (T >= 10 && T < 15) {
+    image.src = "images/temperature15.svg";
+  } else if (T >= 15 && T < 20) {
+    image.src = "images/temperature20.svg";
+  } else {
+    image.src = "images/temperature25.svg";
   }
 }
