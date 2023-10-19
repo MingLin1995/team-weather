@@ -3,6 +3,7 @@ const apiKey = "CWA-C5FE3759-4C7F-4E48-ADEA-8581BA76A0A2";
 
 //取得當前縣市名稱
 const countyElement = document.getElementById("county");
+const cityElement = document.getElementById("city");
 let countyValue;
 
 //  日期 ＆ 時間
@@ -71,6 +72,7 @@ function getWeatherData() {
   const nowDate = getCurrentDate();
   const nextDate = getNextDate();
   countyValue = countyElement.textContent;
+  cityElement.textContent =countyValue
   const apiUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
 
   return fetch(apiUrl, { method: "GET" })
