@@ -2,6 +2,7 @@ const yearElement = document.getElementById("year");
 const weekDayElement = document.getElementById("weekDay");
 const monthDayElement = document.getElementById("monthDay");
 
+
 function getYear(){
     const today = new Date(); 
     let year = formatNumber(today.getFullYear());
@@ -50,9 +51,7 @@ function judgePoP6hElement(){
 
     // 將百分比轉為數字（例如從"70%"轉為0.7）
     let PoP6hElementNumber = parseFloat(PoP6hElementString) / 100;
-
-    
-    
+    console.log( PoP6hElementNumber)
 
 }
 

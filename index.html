@@ -21,12 +21,15 @@
             <!--body-->
             <div class=" container-lg d-flex flex-wrap flex-grow-1 justify-content-between" >
                 <!--Card-->
+                <div class="col-xl-2">
+
+                </div>
                 <div class="col-12 col-xl-4 order-2 order-xl-1 d-flex flex-column justify-content-center  width-xl-560 ">
                     <div class="rounded  bg-white p-2" style="border: 1px solid #d0d0d0;">
                         <!-- 天氣、溫度、縣市 -->
                         <div class="d-flex flex-wrap">
-                            <div class="col-12 col-xl-6 d-flex" >
-                                <div style="width: 130px;">
+                            <div class="col-12 col-xl-8 d-flex" >
+                                <div>
                                     <img src="images/sunny.svg"/>
                                 </div>
                                 <div style="width: 100%;">
@@ -36,14 +39,21 @@
                                     <div class="NSTC fs-6" id="Wx"></div>
                                 </div>
                             </div>
-                            <div class="col-12 col-xl-6 fs-4">
+                            <div class="col-12 col-xl-4 fs-4">
                                 <div class="NSTC fs-1" style="text-align: center;" id="year"></div>
                                 <div class="NSTC fs-3" style="text-align: center;" id="monthDay"></div>
                             </div>
                         </div>
-
-                        <!-- <div class="col-5 "  id="PoPIcon" style="background-color: aqua;"> <img src="images/PoP90.svg"/></div>
-                                <div class="col-7  NSTC"  id="PoP6h" style="background-color: beige; font-size: 60px;"></div> -->
+                        <div class="d-flex">
+                            <div class="col-6 d-flex">
+                                <div id="PoPIcon" style="width: 120px;"> 
+                                    <img style="width: 100%;" src="images/PoP90.svg"/>
+                                </div>
+                                <div  id="PoP6h" class="fs-1">
+                                </div>
+                            </div>
+                        </div>
+                        
 
                         <!-- <div class="d-flex flex-wrap">
                             <div class="col-12 col-xl-5 d-flex flex-wrap" >

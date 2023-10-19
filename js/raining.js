@@ -110,7 +110,7 @@ async function updateWeatherElements() {
     PoP6hElement.textContent = `${PoP6h}%`;
     WsElement.textContent = `風速：${Ws} m/s`;
 
-    judgePoP6hElement()
+    judgePoP6hElement();
   } catch (e) {
     console.log(e);
   }
