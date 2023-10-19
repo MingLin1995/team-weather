@@ -25,16 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
           selectedOption = selectElement.value;
       });
     
-      const information = document.getElementById("information");
+      const aqiIcon = document.getElementById("aqiIcon");
 
-      information.addEventListener("click", function (e) {
+      aqiIcon.addEventListener("click", function (e) {
         sendAirToZapier(cityName, selectedOption);
       });
      
-      const sunRiseTime = document.querySelector("#sunRiseTime");
-      const sunSetTime = document.querySelector("#sunSetTime");
-      const sunRiseImg = sunRiseTime.parentElement.nextElementSibling;
-      const sunSetImg = sunSetTime.parentElement.nextElementSibling;
+      const sunRiseImg = document.querySelector(".sunrise-link");
+      const sunSetImg = document.querySelector(".sunset-link");
 
       console.log("sunRiseImg:", sunRiseImg);
 
@@ -285,28 +283,16 @@ async function sendAirToZapier(cityName, selectedOption){
     iconUrl = "https://i.imgur.com/JkkfA8i.png";
   }
 
-  console.log("selectedOption:", selectedOption);
 
-  const informationDiv = document.getElementById("information").textContent;
-
-  // 使用正則表達式來匹配並提取 AQI、Pollutant 和 Status
-  const regex = /AQI: (\d+), Pollutant: (.+), Status: (.+)/;
-  const matches = informationDiv.match(regex);
-
-  console.log("matches:", matches);
-
-  const aqi = matches[1]; 
-  const pollutant = matches[2]; 
-  const status = matches[3];
-  
-  console.log(`AQI: ${aqi}`);
-  console.log(`Pollutant: ${pollutant}`);
-  console.log(`Status: ${status}`);
+  const aqi = document.querySelector("#aqi").textContent;
+  const status = document.querySelector("#aqiStatus").textContent;
+  const pollutant = document.querySelector("#pollutant").textContent;
 
   let caution, allergicCaution;
 
   if (status === "良好") {
-     caution, allergicCaution = "正常戶外活動";
+     caution =  "正常戶外活動";
+     allergicCaution = "正常戶外活動";
   } else if (status === "普通") {
     caution = "正常戶外活動";
     allergicCaution = "注意咳嗽或呼吸急促";
@@ -318,7 +304,7 @@ async function sendAirToZapier(cityName, selectedOption){
     allergicCaution = "建議留在室內並減少體力消耗"; 
   } else if (status === "非常不健康") {
      caution = "減少或停止戶外活動";
-      allergicCaution = "必須留在室內並減少體力消耗";
+    allergicCaution = "必須留在室內並減少體力消耗";
   } else if (status === "危害") {
     caution = "停止戶外活動、關緊門窗";
     allergicCaution = "必須留在室內並減少體力消耗";
@@ -372,6 +358,8 @@ async function sendAirToZapier(cityName, selectedOption){
       }
     ]
   };
+
+  console.log("payload:", payload);
 
   await fetch(zapierWebhookURL, {
     method: "POST",
