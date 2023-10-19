@@ -151,7 +151,7 @@ function changeTImg(T) {
 
 function changeAQIImg(aqi) {
   console.log(aqi);
-  const image = document.getElementById("AQIImg"); //HTML尚未建立
+  const image = document.getElementById("aqiIcon"); //HTML尚未建立
   if (aqi <= 50) {
     image.src = "images/AQI50.svg";
   } else if (aqi >= 51 && aqi <= 100) {

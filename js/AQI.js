@@ -60,24 +60,21 @@ function getInformation(data) {
 
   //找出符合 selectedSitename 的資料
   const siteData = data.find((item) => item.sitename === sitenameSelect.value);
-  console.log(siteData);
+  console.log("test", siteData);
 
   if (siteData.pollutant == "") {
     siteData.pollutant = "無";
   }
   // 找到符合 county 和 sitename 的資料，顯示相關資訊
-  informationElement.innerHTML = `AQI: ${siteData.aqi}, Pollutant: ${siteData.pollutant}, Status: ${siteData.status}`;
-
   const aqiNumber = document.getElementById("aqi");
-  aqiNumber.textContent=siteData.aqi
+  aqiNumber.textContent = siteData.aqi;
 
   const pollutantInformation = document.getElementById("pollutant");
-  pollutantInformation.textContent=siteData.pollutant
+  pollutantInformation.textContent = siteData.pollutant;
 
   const statusInformation = document.getElementById("aqiStatus");
-  statusInformation.textContent=siteData.status
+  statusInformation.textContent = siteData.status;
   changeAQIImg(siteData.aqi);
-
 }
 
 getAQIData(); //取得API資料
