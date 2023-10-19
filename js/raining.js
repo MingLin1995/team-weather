@@ -170,6 +170,8 @@ function getWeatherData36H() {
         }
 
         let Wx = weatherData36H.weatherElement[6].time[i].elementValue[0].value;
+        let WxNum =
+          weatherData36H.weatherElement[6].time[i].elementValue[1].value;
         let T = weatherData36H.weatherElement[1].time[i].elementValue[0].value;
         let PoP12h =
           weatherData36H.weatherElement[0].time[i].elementValue[0].value;
@@ -179,6 +181,7 @@ function getWeatherData36H() {
           endTime: endTime,
           timeDescribe: timeDescribe,
           Wx: Wx,
+          WxNum: WxNum,
           T: T,
           PoP12h: PoP12h,
         };
@@ -195,18 +198,27 @@ async function updateWeather36HElements() {
   try {
     const weatherData36H = await getWeatherData36H();
     // console.log(weatherData36H);
-
     weatherData36H.forEach((item, index) => {
       const content = `
-		  <div id="timeDescribe">日期描述：${item.timeDescribe}</div>
-		  <div id="Wx">天氣現象：${item.Wx}</div>
-		  <div id="T">溫度：${item.T} ℃</div>
-		  <div id="PoP12h">降雨機率：${item.PoP12h} %</div>`;
-
+		  <div id="timeDescribe">${item.timeDescribe}</div>
+		  <div id="T">${item.T} ℃</div>
+		  <div id="PoP12h">${item.PoP12h} %</div>
+		  <div id="Wx">${item.Wx}</div>
+      <img id="36HImg${index + 1}" 
+      style="
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      z-index: 3;
+      transform: scale(0.5);  
+      opacity: 0.7;" src="images/Sunset.svg">`;
       const container = document.getElementById(`weatherData${index + 1}`);
       if (container) {
         container.innerHTML = content;
       }
+      const imgId = `36HImg${index + 1}`;
+      changeWXImg36H(item.WxNum, imgId);
+      console.log(`第${imgId}是${item.WxNum}`);
     });
   } catch (e) {
     console.log(e);

@@ -93,6 +93,29 @@ function changeWXImg(WxNum) {
   }
 }
 
+function changeWXImg36H(WxNum, imgId) {
+  const wxImg = document.getElementById(imgId);
+  if (WxNum == "01") {
+    wxImg.src = "images/sunny.svg";
+    // console.log("晴天 images/sunny.svg");
+  } else if (WxNum >= "02" && WxNum <= "03") {
+    wxImg.src = "images/sunCloudMorining.svg";
+    // console.log("晴天 多雲 images/sunCloudMorining.svg");
+  } else if (WxNum >= "04" && WxNum <= "07") {
+    wxImg.src = "images/cloud.svg";
+    // console.log("多雲 images/cloud.svg");
+  } else if (WxNum == "21") {
+    wxImg.src = "images/morningRain.svg";
+    // console.log("晴午後雷陣雨 images/morningRain.svg");
+  } else if (WxNum >= "22") {
+    wxImg.src = "images/rain.svg";
+    // console.log("雷陣雨 images/rain.svg");
+  } else {
+    wxImg.src = " images/cloudRain.svg";
+    // console.log("下雨 images/cloudRain.svg");
+  }
+}
+
 function changeWsImg(Ws) {
   const wsImg = document.getElementById("ws-img");
   //   Ws = 50
@@ -123,5 +146,23 @@ function changeTImg(T) {
     image.src = "images/temperature20.svg";
   } else {
     image.src = "images/temperature25.svg";
+  }
+}
+
+function changeAQIImg(aqi) {
+  console.log(aqi);
+  const image = document.getElementById("AQIImg"); //HTML尚未建立
+  if (aqi <= 50) {
+    image.src = "images/AQI50.svg";
+  } else if (aqi >= 51 && aqi <= 100) {
+    image.src = "images/AQI100.svg";
+  } else if (aqi >= 101 && aqi <= 150) {
+    image.src = "images/AQI150.svg";
+  } else if (aqi >= 151 && aqi <= 200) {
+    image.src = "images/AQI2000.svg";
+  } else if (aqi >= 201 && aqi <= 300) {
+    image.src = "images/AQI3000.svg";
+  } else {
+    image.src = "images/AQI4000.svg";
   }
 }

@@ -1,0 +1,15 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="30" cy="30" r="30" fill="url(#paint0_diamond_58_50)"/>
+<circle cx="30" cy="30" r="30" fill="url(#paint1_linear_58_50)"/>
+<defs>
+<radialGradient id="paint0_diamond_58_50" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30 30) rotate(30.556) scale(48.1923 73.9184)">
+<stop stop-color="white"/>
+<stop offset="0.53125" stop-color="#B58BEB"/>
+<stop offset="1" stop-color="#6A2395"/>
+</radialGradient>
+<linearGradient id="paint1_linear_58_50" x1="30" y1="0" x2="30" y2="60" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="#CC31CF"/>
+</linearGradient>
+</defs>
+</svg>
