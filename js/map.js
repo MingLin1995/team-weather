@@ -14,15 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 為每個<path>元素添加點擊事件監聽器
   pathElements.forEach(function (path) {
-    path.classList.remove("is-active");
+    // path.classList.remove("is-active");
 
     path.addEventListener("click", function (event) {
       updateWeatherElements();
       updateWeather36HElements();
       getAstronomicalData();
-
-      console.log("地圖被點擊");
-
       tooltip.textContent = "";
       tooltip.style.display = "none";
 
@@ -49,6 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
     path.addEventListener("mousemove", function (e) {
       tooltip.textContent = path.getAttribute("data-name");
       tooltip.style.display = "block";
+
+      // tooltip.style.left = `${e.pageX + 8}px`;
+      // tooltip.style.top = `${e.pageY - 35}px`;
 
       // 計算相對於 .wrapper 的位置
       let wrapperRect = wrapper.getBoundingClientRect();

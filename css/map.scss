@@ -14,37 +14,35 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
 
-.wrapper .weather {
-  display: inline-block;
-  color: #fff;
+  .weather {
+    display: inline-block;
+    color: #fff;
+  }
 }
-
 .map svg {
   display: inline-block;
   max-width: 120%;
   width: 428.59px;
   height: 560px;
-}
 
-.map svg path {
-  transition: all 0.3s ease-in-out;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: transparent;
-  stroke: #db6c65;
-  stroke-width: 2px;
-  stroke-miterlimit: 10;
-  cursor: pointer;
-}
+  path {
+    transition: all 0.3s ease-in-out;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: transparent;
+    stroke: rgb(219, 108, 101);
+    stroke-width: 2px;
+    stroke-miterlimit: 10;
+    cursor: pointer;
 
-.map svg path:hover {
-  fill: rgba(219, 108, 101, 0.4);
-}
-
-.map svg .is-active {
-  fill: rgba(219, 108, 101, 0.8);
+    &:hover {
+        fill: rgba(219, 108, 101, 0.4);
+    }
+  }
+  .is-active {
+    fill: rgba(219, 108, 101, 0.8);
+  }
 }
 
 .tooltip {
@@ -64,10 +62,13 @@
 }
 
 @media screen and (max-width: 576px) {
-  .wrapper .map svg {
-    height: 100%;
-  }
-  .wrapper .weather {
-    margin-bottom: 20px;
-  }
+
+    .wrapper {
+        .map svg {
+            height: 100%;
+        }
+        .weather {
+            margin-bottom: 20px;
+        }
+    }
 }
