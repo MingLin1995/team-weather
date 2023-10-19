@@ -1,0 +1,22 @@
+<svg width="44" height="41" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_99_50)">
+<rect x="7" y="7" width="30" height="27" rx="13.5" fill="#62D0F2"/>
+</g>
+<g clip-path="url(#clip0_99_50)">
+<path d="M13.6 20.07C14.27 19.54 14.79 19.45 15.14 19.48C15.95 19.53 16.15 20.14 16.92 20.07C17.6 20.02 18.35 19.48 18.35 19.48" stroke="#301C1C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.1 19.71C23.8 19.99 24.37 20.06 24.76 20.07C25.56 20.09 25.92 19.87 26.66 19.95C27.29 20.02 27.78 20.25 28.09 20.43" stroke="#301C1C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.84 15.79L15.38 14.6L17.64 14.6C18.12 14.84 18.59 15.08 19.07 15.31" stroke="#301C1C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.53 15.31L25.6 14.83C25.76 14.79 26.25 14.71 26.79 14.95C27.42 15.23 27.68 15.76 27.74 15.9" stroke="#301C1C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.3 26.19C16.04 26.18 16.69 26.13 17.2 26.07C17.28 26.07 17.94 25.99 18.67 25.85C19.12 25.77 19.61 25.66 19.68 25.65C19.77 25.63 19.85 25.61 19.93 25.59C21.01 25.35 21.42 25.21 21.95 25.11C21.95 25.11 22.21 25.06 24.21 24.99C24.26 25.03 25 25.75 24.8 26.53C24.59 27.37 23.47 27.64 22.78 27.6C21.89 27.55 21.3 26.96 21.12 26.77C19.47 25.12 20.34 22.06 20.42 21.78" stroke="#301C1C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_f_99_50" x="0" y="0" width="44" height="41" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="3.5" result="effect1_foregroundBlur_99_50"/>
+</filter>
+<clipPath id="clip0_99_50">
+<rect width="15.69" height="14.22" fill="white" transform="translate(13 14)"/>
+</clipPath>
+</defs>
+</svg>

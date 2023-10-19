@@ -20,53 +20,64 @@
                 </div>
             </div>
             <!--body-->
-            <div class=" container-lg d-flex flex-wrap flex-grow-1 justify-content-between" >
+            <div class=" container-lx d-flex flex-wrap flex-grow-1 justify-content-between" >
                 <!--Card-->
+                <div class="col-xl-2">
+
+                </div>
                 <div class="col-12 col-xl-4 order-2 order-xl-1 d-flex flex-column justify-content-center  width-xl-560 ">
                     <div class="rounded  bg-white p-2" style="border: 1px solid #d0d0d0;">
                         <!-- 天氣、溫度、縣市 -->
-                        <div class="d-flex flex-wrap">
-                            <div class="col-12 col-xl-6 d-flex" >
-                                <div style="width: 130px;">
-                                    <img src="images/sunny.svg"/>
-                                </div>
-                                <div style="width: 100%;">
-                                    <div class="fs-5  NSTC" style="color: 795F5F;" id="county">臺中市</div>
-                                    <div class="fs-1  NSTC" style="color: 795F5F;" id="T"></div>
-                                    <img src="images/Rectangle28.svg"/>
-                                    <div class="NSTC fs-6" id="Wx"></div>
+
+                        <div class="d-flex" >
+                            <div class="col-6">
+                                <img src="images/sunny.svg" id="wx-img"/>
+                            </div>
+                            <div class="col-6">
+                                <div class="fs-5  NSTC" style="color: 795F5F;" id="county">臺中市</div>
+                                <div class="fs-1  NSTC" style="color: 795F5F;" id="T"></div>
+                                <img src="images/Rectangle28.svg"/>
+                                <div class="NSTC fs-6" id="Wx"></div>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="col-6">
+                                <div id="PoPIcon d-flex justify-content-center align-items-center" > 
+                                    <img  style="width: 120px;" src="images/PoP90.svg"/>
                                 </div>
                             </div>
-                            <div class="col-12 col-xl-6 fs-4">
-                                <div class="NSTC fs-1" style="text-align: center;" id="year"></div>
-                                <div class="NSTC fs-3" style="text-align: center;" id="monthDay"></div>
+                            <div class="col-6 ">
+                                <div  id="PoP6h" style="font-size: 50px; line-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex">
+                            <div class="col-6 py-1" >
+                                <div><span id="sunRiseTime"></span> <span>AM</span></div>
+                                <img src="images/Sunrise.svg">
+                            </div>
+                            <div class="col-6 py-1">
+                                <div><span id="sunSetTime"></span> <span>PM</span></div>
+                                <img src="images/Sunset.svg">
+                            </div>
+                        </div>
+                            
+                        <div class="d-flex">
+                            <div class="col-6 fs-4">
+                                <div class="NSTC fs-1" style="text-align:left;" id="year"></div>
+                                <div class="NSTC fs-3" style="text-align: left;"><span id="monthDay"></span><span id="weekDay"></span></div>
+                            </div>
+                            <div class="col-6 fs-4 rounded d-flex align-items-center" style="border: 1px solid #d0d0d0;">
+                                <span>風速</span><span id="Ws" style="font-size: 48px; margin-left: 15px;"></span><span id="wind"> 
+                                    <img src="images/wind10.svg"/>
+                                </span>
                             </div>
                         </div>
 
-                        <!-- <div class="col-5 "  id="PoPIcon" style="background-color: aqua;"> <img src="images/PoP90.svg"/></div>
-                                <div class="col-7  NSTC"  id="PoP6h" style="background-color: beige; font-size: 60px;"></div> -->
 
-                        <!-- <div class="d-flex flex-wrap">
-                            <div class="col-12 col-xl-5 d-flex flex-wrap" >
-                                
-                                <img src="images/sunny.svg"/>
-                            </div>
-                            <div class="col-12 col-xl-7">
-                                <div style="height: 60px;" id="T">溫度</div>
-
-                                <div class="d-flex" style="height: 60px;">
-                                    <div class="float-left bg-success" style="width: 50%; height: 100%;" id="Ws">風速</div>
-                                    <div class="float-right bg-warning" style="width: 50%; height: 100%;" id="PoP6h"></div>
-                                </div>
-
-                                <div class="d-flex" style="height: 60px;">
-                                    <div class="float-left bg-warning" style="width: 50%; height: 100%;" id="sunRiseTime">日出</div>
-                                    <div class="float-right bg-info" style="width: 50%; height: 100%;" id="sunSetTime">日落</div>
-                                </div>
-                            </div>
-                        </div> -->
                         <!-- 今天與明天與後天 -->
-                        <!-- <div class="d-flex flex-wrap" id="weatherDataContainer">
+                        <div class="d-flex flex-wrap" id="weatherDataContainer">
                             <div class="col-12 col-xl-4" style="height: 150px; background-color: aqua;" id="weatherData1" >
                                 今夜明晨
                             </div>
@@ -76,7 +87,7 @@
                             <div class="col-12 col-xl-4" style="height: 150px; background-color:red;" id="weatherData3">
                                 明日晚間
                             </div>
-                        </div> -->
+                        </div>
                         <!-- 空氣品質檢測-->
                         <div style="background-color:yellow;height: 150px;">
                             <select name="fruits" id="sitenameSelect">
@@ -341,7 +352,6 @@
                     </div>
                 </div>
         </div>
-       
         <div class=" footer container-fluid header px-3 py-2  text-center " >
             <a href=""><img src="your-image.jpg" id="pokemon" alt="絕對定位圖片" /></a>
             <div class="mb-1 fs-10" id="pokemon-welcome"> </div>
