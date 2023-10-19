@@ -1,19 +1,12 @@
 @charset "UTF-8";
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  font-family: "微軟正黑體", "Avenir", Helvetica, Arial, sans-serif;
-}
-
 .wrapper {
   position: relative;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   flex-wrap: wrap;
+  margin-top: 70px;
 }
 
 .wrapper .weather {
