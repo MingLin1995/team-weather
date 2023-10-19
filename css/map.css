@@ -1,119 +1,70 @@
 @charset "UTF-8";
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  font-family: "微軟正黑體", "Avenir", Helvetica, Arial, sans-serif;
-}
-
 .wrapper {
   position: relative;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   flex-wrap: wrap;
+  margin-top: 70px;
 }
+
 .wrapper .weather {
   display: inline-block;
   color: #fff;
 }
-@media screen and (max-width: 576px) {
-  .wrapper .weather {
-    margin-bottom: 20px;
-  }
-}
-.wrapper .weather__title {
-  margin-top: 4px;
-  background-color: #028090;
-  width: 290px;
-  border-radius: 4px;
-  text-align: center;
-  letter-spacing: 10px;
-}
-.wrapper .weather__title h1 {
-  padding: 10px;
-}
-.wrapper .weather__box {
-  margin-top: 4px;
-  background-color: #028090;
-  width: 290px;
-  border-radius: 4px;
-}
-.wrapper .weather__icon {
+
+.map svg {
   display: inline-block;
-  width: 100px;
-  height: 90px;
-  margin: 10px;
-  vertical-align: top;
+  max-width: 120%;
+  width: 600px;
+  height: 1000px;
 }
-.wrapper .weather__content {
-  display: inline-block;
-  margin: 10px 5px;
-  height: 90px;
-}
-.wrapper .weather__content h3 {
-  letter-spacing: 2px;
-}
-.wrapper .weather__content .temp {
-  position: relative;
-  margin: 5px 0;
-}
-.wrapper .weather__content .temp .fa-thermometer-empty {
-  transform: rotate(30deg);
-  margin: 0 2px;
-}
-.wrapper .weather__content .temp i {
-  font-style: normal;
-  letter-spacing: 2px;
-}
-.wrapper .weather__content .temp i:last-child::before {
-  content: "~";
-  margin: 0 5px;
-}
-.wrapper .weather__content .rain {
-  position: relative;
-  letter-spacing: 2px;
-  margin-top: 5px;
-}
-.wrapper .map svg {
-  display: inline-block;
-  max-width: 100%;
-  width: 428.59px;
-  height: 560px;
-}
-@media screen and (max-width: 576px) {
-  .wrapper .map svg {
-    height: 100%;
-  }
-}
-.wrapper .map svg path {
+
+.map svg path {
   transition: all 0.3s ease-in-out;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: transparent;
-  stroke: #fff;
-  stroke-width: 1px;
+  stroke: #db6c65;
+  stroke-width: 2px;
   stroke-miterlimit: 10;
   cursor: pointer;
 }
-.wrapper .map svg path:hover {
-  fill: rgba(236, 181, 126, 0.8);
+
+.map svg path:hover {
+  fill: rgba(219, 108, 101, 0.4);
 }
-.wrapper .map svg .is-active {
-  fill: rgba(250, 159, 66, 0.8);
+
+.map svg .is-active {
+  fill: rgba(219, 108, 101, 0.8);
 }
 
 .tooltip {
   display: none;
   position: absolute;
-  z-index: 1;
-  background: rgba(2, 128, 144, 0.1);
-  color: #fff;
+  z-index: 1000;
+  color: white;
   text-align: center;
   width: 80px;
   height: 35px;
   line-height: 35px;
   border-radius: 6px;
+  background-color: rgba(219, 108, 101, 0.5);
+  /* 覆蓋 bootstrap 的 opacity: 0 */
+  opacity: 1;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper .map svg {
+    height: 100%;
+  }
+  .wrapper .weather {
+    margin-bottom: 20px;
+  }
+  .map svg {
+    width: 400px;
+    height: 600px;
+  }
 }

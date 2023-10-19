@@ -1,10 +1,9 @@
-
-
 //自己申請帳號就有了
-const apiKey = "CWA-C5FE3759-4C7F-4E48-ADEA-8581BA76A0A2";
+const apiKey = "CWA-762E79D6-BEEF-4897-AE57-CED139A9CFDC";
 
 //取得當前縣市名稱
 const countyElement = document.getElementById("county");
+const cityElement = document.getElementById("city");
 let countyValue;
 
 //  日期 ＆ 時間
@@ -60,11 +59,11 @@ function updateDateTimeElements() {
   const currentTime = getCurrentTime();
 
   dateElement.textContent = `日期：${nowDate}`;
-  // timeElement.textContent = `現在時間：${currentTime}`;
+  timeElement.textContent = `現在時間：${currentTime}`;
 }
 
 //每秒更新一次現在時間
-setInterval(updateDateTimeElements, 1000);
+// setInterval(updateDateTimeElements, 1000);
 
 // 當天天氣
 // https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${key}
@@ -73,6 +72,7 @@ function getWeatherData() {
   const nowDate = getCurrentDate();
   const nextDate = getNextDate();
   countyValue = countyElement.textContent;
+  cityElement.textContent = countyValue;
   const apiUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
 
   return fetch(apiUrl, { method: "GET" })
@@ -96,19 +96,27 @@ async function updateWeatherElements() {
     const weatherData = await getWeatherData();
 
     const Wx = weatherData.weatherElement[1].time[0].elementValue[0].value;
+    const WxNum = weatherData.weatherElement[1].time[0].elementValue[1].value;
+    // console.log("天氣WX", Wx);
+    // console.log("天氣WXNum", WxNum);
     const T = weatherData.weatherElement[3].time[0].elementValue[0].value;
     const PoP6h = weatherData.weatherElement[7].time[0].elementValue[0].value;
     const Ws = weatherData.weatherElement[8].time[0].elementValue[0].value;
+    console.log("風速Ws", Ws);
 
     const WxElement = document.getElementById("Wx");
     const TElement = document.getElementById("T");
     const PoP6hElement = document.getElementById("PoP6h");
     const WsElement = document.getElementById("Ws");
 
-    WxElement.textContent = `天氣現象：${Wx}`;
-    TElement.textContent = `溫度：${T} ℃`;
-    PoP6hElement.textContent = `6小時降雨機率：${PoP6h} %`;
-    WsElement.textContent = `風速：${Ws} m/s`;
+    WxElement.textContent = `${Wx}天`;
+    TElement.textContent = `${T} ℃`;
+    PoP6hElement.textContent = `${PoP6h}%`;
+    WsElement.textContent = `${Ws} m/s`;
+    changeWXImg(WxNum);
+    changeWsImg(Ws);
+    changePopImg(PoP6h);
+    changeTImg(T);
   } catch (e) {
     console.log(e);
   }
@@ -144,7 +152,7 @@ function getWeatherData36H() {
         let timeDescribe;
         let timeBase = startTime.substr(11);
         let dateBase = startTime.substr(0, 10);
-        console.log(timeBase);
+        // console.log(timeBase);
 
         if (
           (dateBase == nowDate && timeBase == "06:00:00") ||
@@ -162,6 +170,8 @@ function getWeatherData36H() {
         }
 
         let Wx = weatherData36H.weatherElement[6].time[i].elementValue[0].value;
+        let WxNum =
+          weatherData36H.weatherElement[6].time[i].elementValue[1].value;
         let T = weatherData36H.weatherElement[1].time[i].elementValue[0].value;
         let PoP12h =
           weatherData36H.weatherElement[0].time[i].elementValue[0].value;
@@ -171,6 +181,7 @@ function getWeatherData36H() {
           endTime: endTime,
           timeDescribe: timeDescribe,
           Wx: Wx,
+          WxNum: WxNum,
           T: T,
           PoP12h: PoP12h,
         };
@@ -186,19 +197,27 @@ function getWeatherData36H() {
 async function updateWeather36HElements() {
   try {
     const weatherData36H = await getWeatherData36H();
-    console.log(weatherData36H);
-
+    // console.log(weatherData36H);
     weatherData36H.forEach((item, index) => {
       const content = `
-		  <div id="timeDescribe">日期描述：${item.timeDescribe}</div>
-		  <div id="Wx">天氣現象：${item.Wx}</div>
-		  <div id="T">溫度：${item.T} ℃</div>
-		  <div id="PoP12h">降雨機率：${item.PoP12h} %</div>`;
-
+		  <div id="timeDescribe">${item.timeDescribe}</div>
+		  <div id="T">${item.T} ℃</div>
+		  <div id="PoP12h">${item.PoP12h} %</div>
+		  <div id="Wx">${item.Wx}</div>
+      <img id="36HImg${index + 1}" 
+      style="
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      z-index: 3;
+      opacity: 0.7;" src="images/Sunset.svg">`;
       const container = document.getElementById(`weatherData${index + 1}`);
       if (container) {
         container.innerHTML = content;
       }
+      const imgId = `36HImg${index + 1}`;
+      changeWXImg36H(item.WxNum, imgId);
+      console.log(`第${imgId}是${item.WxNum}`);
     });
   } catch (e) {
     console.log(e);
@@ -259,8 +278,6 @@ console.log("地圖", mapElement);
 // 如果地图元素存在，则附加点击事件监听器
 if (mapElement) {
   mapElement.addEventListener("click", async function () {
-    console.log("地图被点击");
-
     // 更新天气数据
     try {
       await updateWeatherElements();

@@ -4,7 +4,7 @@
 //取得API資料
 function getAQIData() {
   //自己去申請帳號就有了
-  const apiKey = "4a670a0d-e63d-4322-a733-4c3da2fd5c86";
+  const apiKey = "540e2ca4-41e1-4186-8497-fdd67024ac44";
 
   //format JSON格式；offset 跳過筆數；limit 取幾筆資料
   const apiUrl = `https://data.moenv.gov.tw/api/v2/aqx_p_432?format=json&offset=0&limit=100&api_key=${apiKey}`;
@@ -60,13 +60,21 @@ function getInformation(data) {
 
   //找出符合 selectedSitename 的資料
   const siteData = data.find((item) => item.sitename === sitenameSelect.value);
-  console.log(siteData);
+  console.log("test", siteData);
 
   if (siteData.pollutant == "") {
     siteData.pollutant = "無";
   }
   // 找到符合 county 和 sitename 的資料，顯示相關資訊
-  informationElement.innerHTML = `AQI: ${siteData.aqi}, Pollutant: ${siteData.pollutant}, Status: ${siteData.status}`;
+  const aqiNumber = document.getElementById("aqi");
+  aqiNumber.textContent = siteData.aqi;
+
+  const pollutantInformation = document.getElementById("pollutant");
+  pollutantInformation.textContent = siteData.pollutant;
+
+  const statusInformation = document.getElementById("aqiStatus");
+  statusInformation.textContent = siteData.status;
+  changeAQIImg(siteData.aqi);
 }
 
 getAQIData(); //取得API資料
