@@ -1,3 +1,7 @@
+* {
+  color: #432f2f;
+}
+
 .base-nav {
   border-radius: 10px;
   background: #FFFDFD;
@@ -15,6 +19,7 @@
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
   padding: 10px;
   margin: 10px;
+  max-width: 400px;
 }
 
 .main-rain {
@@ -23,6 +28,20 @@
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
   padding: 10px;
   margin: 10px;
+  max-width: 400px;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.main-rain #PoP6h {
+  font-size: 200px;
+  overflow: hidden;
+  opacity: 0.2;
+  font-family: 'urbanist';
+  font-weight: 200;
+  margin-left: -40px;
+  margin-bottom: -10px;
+  color: #257096;
 }
 
 .main-sun {
@@ -31,6 +50,7 @@
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
   padding: 10px;
   margin: 10px;
+  max-width: 400px;
 }
 
 .main-date {
@@ -38,8 +58,10 @@
   background: #FFFDFD;
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
   padding: 10px;
+  padding-left: 30px;
   margin: 10px;
   margin-right: 20px;
+  max-width: 200px;
 }
 
 .main-wind {
@@ -50,17 +72,20 @@
   flex-direction: column;
   padding: 10px;
   margin: 10px;
+  max-width: 200px;
 }
 
-.main-date-wind {
+.main-wind div {
+  font-size: 20px;
+}
+
+.main-wind .main-date-wind {
   display: flex;
   justify-content: center;
 }
 
 .main-timeline {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+  text-align: center;
 }
 
 .main-forecast {
@@ -70,13 +95,33 @@
   position: relative;
   padding: 10px;
   margin: 10px;
+  text-align: left;
+}
+
+.main-forecast #T {
+  font-size: 35px;
+}
+
+.main-forecast #PoP12h {
+  font-size: 25px;
+  color: #26749b;
+  font-weight: 400;
+}
+
+.main-forecast #Wx {
+  font-size: 16px;
 }
 
 #weatherData1, #weatherData2, #weatherData3 {
   background-color: white;
   border: none;
-  padding: 5px;
-  margin: 0;
+  border-radius: 10px;
+  background: #FFFDFD;
+  box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
+  position: relative;
+  padding: -50px;
+  width: 200px;
+  margin-right: 22px;
 }
 
 .main-AQI {
@@ -115,9 +160,19 @@
 }
 
 .main-sunImage {
+  text-align: center;
   margin-bottom: 10px;
 }
 
 .main-T {
-  font-size: 48px;
+  color: #795F5F;
+  font-size: 50px;
+}
+
+.main-AQI-left-area {
+  margin-right: 20px;
+}
+
+.main-site-word {
+  margin-left: 10px;
 }

@@ -17,8 +17,8 @@
 .map svg {
   display: inline-block;
   max-width: 120%;
-  width: 428.59px;
-  height: 560px;
+  width: 600px;
+  height: 1000px;
 }
 
 .map svg path {
@@ -62,5 +62,9 @@
   }
   .wrapper .weather {
     margin-bottom: 20px;
+  }
+  .map svg {
+    width: 400px;
+    height: 600px;
   }
 }

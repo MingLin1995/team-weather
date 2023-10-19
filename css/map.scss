@@ -17,8 +17,10 @@
 .map svg {
   display: inline-block;
   max-width: 120%;
-  width: 428.59px;
-  height: 560px;
+  // width: 428.59px;
+  // height: 560px;
+  width: 600px;
+  height:1000px;
 
   path {
     transition: all 0.3s ease-in-out;
@@ -64,5 +66,10 @@
         .weather {
             margin-bottom: 20px;
         }
+    }
+
+    .map svg {
+      width: 400px;
+      height:600px;
     }
 }
