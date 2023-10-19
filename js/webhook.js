@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const cityName = e.currentTarget.getAttribute("data-name");
 
       const wx = document.querySelector("#Wx");
-      const weatherImage = wx.nextElementSibling
+      // const weatherImage = wx.nextElementSibling
+      const weatherImage = document.querySelector("#wx-img");
 
       weatherImage.addEventListener("click", function (e) {
         sendDataToZapier(cityName);
