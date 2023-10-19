@@ -109,14 +109,40 @@ async function updateWeatherElements() {
     const PoP6hElement = document.getElementById("PoP6h");
     const WsElement = document.getElementById("Ws");
 
+    const lastWx = WxElement.textContent;
+    const nowWx = `${Wx}天`;
+    // const lastTel = TElement.textContent.replace(/℃/g, "");
+    // const nowTel = `${T}`;
+    // const lastPoP6h = PoP6hElement.textContent.replace(/%/g, "");
+    // const nowPoP6h = `${PoP6h}`;
+    // const lastWs = WsElement.textContent.replace(/m\/s/g, "").trim();
+    // const nowWs = `${Ws}`;
+
+    const lastTel = parseInt(TElement.textContent.replace(/℃/g, ""), 10);
+    const nowTel = parseInt(`${T}`, 10);  // 請將"新的T值"替換為實際的值
+
+    const lastPoP6h = parseInt(PoP6hElement.textContent.replace(/%/g, ""), 10);
+    const nowPoP6h = parseInt(`${PoP6h}`, 10);  // 請將"新的PoP6h值"替換為實際的值
+
+    const lastWs = parseFloat(WsElement.textContent.replace(/m\/s/g, "").trim());
+    const nowWs = parseFloat(`${Ws}`);  // 請將"新的Ws值"替換為實際的值
+
+    animateValue("T", lastTel, nowTel, 2000, "°C", T );
+    animateValue("PoP6h", lastPoP6h, nowPoP6h, 3000,  "%", PoP6h);
+    animateValue("Ws", lastWs, nowWs, 2000, " m/s", Ws);
+
+    // animateValue("AQI", 50, 100, 2000, "", aqi);
+
     WxElement.textContent = `${Wx}天`;
     TElement.textContent = `${T} ℃`;
     PoP6hElement.textContent = `${PoP6h}%`;
     WsElement.textContent = `${Ws} m/s`;
+
     changeWXImg(WxNum);
     changeWsImg(Ws);
     changePopImg(PoP6h);
     changeTImg(T);
+
   } catch (e) {
     console.log(e);
   }
@@ -217,6 +243,7 @@ async function updateWeather36HElements() {
       }
       const imgId = `36HImg${index + 1}`;
       changeWXImg36H(item.WxNum, imgId);
+
       console.log(`第${imgId}是${item.WxNum}`);
     });
   } catch (e) {
@@ -265,27 +292,31 @@ function getSunRiseSet(astronomicalData) {
   const sunSetTimeElement = document.getElementById("sunSetTime");
   const sunRiseTime = astronomicalData.SunRiseTime;
   const sunSetTime = astronomicalData.SunSetTime;
-  sunRiseTimeElement.innerHTML = `日出： ${sunRiseTime}`;
-  sunSetTimeElement.innerHTML = `日落： ${sunSetTime}`;
+  sunRiseTimeElement.innerHTML = `日出<br> ${sunRiseTime}`;
+  sunSetTimeElement.innerHTML = `日落<br> ${sunSetTime}`;
+
+
+
+
 }
 
 getAstronomicalData();
 
-// 选择地图元素
+//選擇地圖元素
 let mapElement = document.querySelector(".map");
 console.log("地圖", mapElement);
 
-// 如果地图元素存在，则附加点击事件监听器
+// 如果地圖存在則監聽
 if (mapElement) {
   mapElement.addEventListener("click", async function () {
-    // 更新天气数据
+    // 更新天氣資料
     try {
       await updateWeatherElements();
       await updateWeather36HElements();
       await getAstronomicalData();
       await getAQIData();
     } catch (error) {
-      console.error("更新天气数据时发生错误:", error);
+      console.error("更新天氣資料發生錯誤:", error);
     }
   });
 }

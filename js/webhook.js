@@ -1,48 +1,47 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  let cityName = "臺中市";
   const paths = document.querySelectorAll(".map path");
 
+  // Weather
+  const weatherImage = document.querySelector("#wx-img");
+
+  weatherImage.addEventListener("click", function (e) {
+    console.log("以點擊");
+    sendDataToZapier(cityName);
+  });
+
+  const aqiIcon = document.getElementById("aqiIcon");
+
+  aqiIcon.addEventListener("click", function (e) {
+    sendAirToZapier(cityName, selectedOption);
+  });
+
+  // Air
+  const selectElement = document.querySelector("#sitenameSelect");
+  let selectedOption;
+  selectElement.addEventListener("change", function() {
+      selectedOption = selectElement.value;
+  });
+
+  // Sun
+
+  const sunRiseImg = document.querySelector(".sunrise");
+  const sunSetImg = document.querySelector(".sunset");
+
+  console.log("sunRiseImg:", sunRiseImg);
+
+  sunRiseImg.addEventListener("click", function (e) {
+    sendSunToZapier(cityName, sunRiseTime, sunSetTime, true );
+  });
+  sunSetImg.addEventListener("click", function (e) {
+    sendSunToZapier(cityName, sunRiseTime, sunSetTime, false );
+  });
+
   paths.forEach(path => {
-
     path.addEventListener("click", function (e) {
-      const cityName = e.currentTarget.getAttribute("data-name");
-
-      const wx = document.querySelector("#Wx");
-      // const weatherImage = wx.nextElementSibling
-      const weatherImage = document.querySelector("#wx-img");
-
-      weatherImage.addEventListener("click", function (e) {
-
-        console.log("以點擊");
-        sendDataToZapier(cityName);
-      });
-
-      const selectElement = document.querySelector("#sitenameSelect");
-      let selectedOption;
-    
-      selectElement.addEventListener("change", function() {
-          selectedOption = selectElement.value;
-      });
-    
-      const aqiIcon = document.getElementById("aqiIcon");
-
-      aqiIcon.addEventListener("click", function (e) {
-        sendAirToZapier(cityName, selectedOption);
-      });
-     
-      const sunRiseImg = document.querySelector(".sunrise-link");
-      const sunSetImg = document.querySelector(".sunset-link");
-
-      console.log("sunRiseImg:", sunRiseImg);
-
-      sunRiseImg.addEventListener("click", function (e) {
-        sendSunToZapier(cityName, sunRiseTime, sunSetTime, true );
-      });
-      sunSetImg.addEventListener("click", function (e) {
-        sendSunToZapier(cityName, sunRiseTime, sunSetTime, false );
-      });
-
+      cityName = e.currentTarget.getAttribute("data-name");
     });
   });
 });
@@ -391,10 +390,10 @@ async function sendSunToZapier(cityName, sunRiseTime, sunSetTime, sunRise){
 
   let mainImgUrl, keyword ="";
   if (sunRise) {
-    mainImgUrl = "https://i.imgur.com/UkkOa1y.jpg";
+    mainImgUrl = "https://www.gomaji.com/blog/wp-content/uploads/2021/06/%E9%A6%96%E5%9C%96_%E9%9A%99%E9%A0%82%E4%BA%8C%E5%BB%B6%E5%B9%B3%E6%AD%A5%E9%81%93_ooxx2081.jpg";
     keyword = "出";
   } else {
-    mainImgUrl = "https://i.imgur.com/7qwB1oy.jpg";
+    mainImgUrl = "https://www.winnews.com.tw/wp-content/uploads/2020/03/%E6%B7%A1%E6%B0%B4%E6%B2%99%E5%B4%99%E4%B8%96%E7%95%8C%E5%8D%81%E5%A4%A7%E5%A4%95%E9%99%BD-scaled.jpg";
     keyword = "落";
   }
 

@@ -1,12 +1,26 @@
+@charset "UTF-8";
 * {
   color: #432f2f;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.container-xl {
+  margin-top: 200px;
+}
+
+body {
+  background: #fcf9f9;
 }
 
 .base-nav {
   border-radius: 10px;
   background: #FFFDFD;
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
-  margin-bottom: 50px;
+  height: 50px;
 }
 
 .footer {
@@ -19,7 +33,18 @@
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
   padding: 10px;
   margin: 10px;
-  max-width: 400px;
+  max-width: 430px;
+  max-height: 220px;
+  overflow: hidden;
+}
+
+.main-dashboard #county {
+  font-size: 25px;
+}
+
+.main-dashboard #Wx {
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .main-rain {
@@ -28,7 +53,7 @@
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
   padding: 10px;
   margin: 10px;
-  max-width: 400px;
+  max-width: 430px;
   max-height: 200px;
   overflow: hidden;
 }
@@ -36,7 +61,7 @@
 .main-rain #PoP6h {
   font-size: 200px;
   overflow: hidden;
-  opacity: 0.2;
+  opacity: 0.5;
   font-family: 'urbanist';
   font-weight: 200;
   margin-left: -40px;
@@ -48,9 +73,8 @@
   border-radius: 10px;
   background: #FFFDFD;
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
-  padding: 10px;
   margin: 10px;
-  max-width: 400px;
+  max-width: 430px;
 }
 
 .main-date {
@@ -112,8 +136,11 @@
   font-size: 16px;
 }
 
+.big-container {
+  margin-top: 150px;
+}
+
 #weatherData1, #weatherData2, #weatherData3 {
-  background-color: white;
   border: none;
   border-radius: 10px;
   background: #FFFDFD;
@@ -128,6 +155,14 @@
   width: 342px;
   height: 100%;
   margin: 30px auto 30px auto;
+}
+
+#aqi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
 }
 
 #aqiIcon {
@@ -175,4 +210,105 @@
 
 .main-site-word {
   margin-left: 10px;
+}
+
+@media (max-width: 1200px) {
+  .width-xl-560 {
+    margin: 0 auto;
+  }
+  .big-container {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1600px;
+  }
+}
+
+#aqiStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px #c8c8c8 dashed;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.sunrise {
+  position: relative;
+  background-image: url("https://www.gomaji.com/blog/wp-content/uploads/2021/06/%E9%A6%96%E5%9C%96_%E9%9A%99%E9%A0%82%E4%BA%8C%E5%BB%B6%E5%B9%B3%E6%AD%A5%E9%81%93_ooxx2081.jpg");
+  background-size: cover;
+  border-radius: 20px;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.sunrise::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top right, rgba(254, 214, 127, 0.6), rgba(255, 255, 255, 0));
+  z-index: 1;
+}
+
+.sunset {
+  position: relative;
+  background-image: url("https://www.winnews.com.tw/wp-content/uploads/2020/03/%E6%B7%A1%E6%B0%B4%E6%B2%99%E5%B4%99%E4%B8%96%E7%95%8C%E5%8D%81%E5%A4%A7%E5%A4%95%E9%99%BD-scaled.jpg");
+  background-size: cover;
+  border-radius: 20px;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  margin-left: 0;
+  overflow: hidden;
+}
+
+.sunset::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top right, rgba(67, 14, 14, 0.4), rgba(255, 255, 255, 0));
+  z-index: 1;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  /* 應用模糊效果 */
+  border-radius: 10px;
+}
+
+.glass-more {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
+  /* 應用模糊效果 */
+  border-radius: 10px;
+}
+
+.main-sunImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.main-sunImage .main-sunImage-inner {
+  width: 150px;
+  z-index: 2;
+}
+
+#sunSetTime, .time-unit {
+  color: white;
 }

@@ -15,8 +15,8 @@
     <body>
         <div class="d-flex flex-column " style="height: 100vh;">
             <!--header-->
-            <div class="base-nav container-fluid header px-3 py-2">
-                <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="base-nav container-fluid header px-3 py-2 fixed-top">
+                <nav class="glass navbar navbar-expand-lg navbar-light">
                     <div class="d-flex align-items-center" >
                         <img src="images/logotype.png" alt="weather"/>
                         <!-- <a class="navbar-brand mx-2 title" href="#">WeatheRush</a> -->
@@ -27,14 +27,14 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">中央氣象局</a>
+                                <a class="nav-link" href="https://www.cwa.gov.tw/V8/C/">中央氣象局</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">空氣監測網</a>
+                                <a class="nav-link" href="https://airtw.moenv.gov.tw/">空氣監測網</a>
                             </li>
                             <!-- 預留給 Font Awesome 的 GitHub 圖示 -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="https://github.com/MingLin1995/team-weather">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </li>
@@ -49,56 +49,52 @@
                 </nav>
             </div>
             <!--body-->
-            <div class=" container-lx d-flex flex-wrap flex-grow-1 justify-content-between" >
-                <!--Card-->
-                <div class="col-xl-2">
-
-                </div>
-                <div class="col-12 col-xl-4 order-2 order-xl-1 d-flex flex-column justify-content-center  width-xl-560 ">
-                    <div class="rounded p-2">
+            <div class="big-container container-xl d-flex flex-wrap flex-grow-1 justify-content-start" >
+                <div class="left-side-background col-12 col-xl-6 order-2 order-xl-1 d-flex flex-column justify-content-center width-xl-560 ">
+                    <div class="main-bg rounded p-2">
                         <!-- 天氣、溫度、縣市 -->
 
-                        <div class="main-dashboard d-flex" >
-                            <div class="col-6">
-                                <img src="" id="wx-img"/>
+                        <div class="glass main-dashboard d-flex" >
+                            <div class="col-8">
+                                <img src="" id="wx-img" width="250px"/>
                             </div>
-                            <div class="col-6">
-                                <div class="fs-5  " style="color: 795F5F;" id="county">臺中市</div>
-                                <div class="  main-T"  id="T"></div>
+                            <div class="col-4">
+                                <div class="main-city" style="color: #795F5F;" id="county">臺中市</div>
+                                <div class="main-T"  id="T">0°C</div>
                                 <img id="TImg" src=""/>
-                                <div class=" fs-6" id="Wx"></div>
+                                <div class="main-weather" id="Wx">天知道</div>
                             </div>
                         </div>
-                        <div class="main-rain d-flex">
+                        <div class="glass main-rain d-flex">
                             <div class="col-4">
                                 <div id="PoPIcon d-flex justify-content-center align-items-center" > 
                                     <img  id="PoPImg" style="width: 80px;" src="images/PoP90.svg"/>
                                 </div>
                             </div>
                             <div class="col-8 ">
-                                <div id="PoP6h">
+                                <div id="PoP6h">0
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="main-sun d-flex">
-                            <div class=" col-6 py-1" >
-                                <div class="main-sunImage"><span id="sunRiseTime"></span> <span>AM</span></div>
-                                <img class="sunrise-link" src="images/Sunrise.svg">
+                        <div class="glass main-sun d-flex">
+                            <div class="main-sunImage sunrise col-6 py-1" >
+                                <div class="glass-more main-sunImage-inner sunrise-inner"><span id="sunRiseTime"></span> <span>AM</span></div>
+                                <!-- <img class="sunrise-link" src="images/Sunrise.svg" width="70px"> -->
                             </div>
-                            <div class="main-sunImage col-6 py-1">
-                                <div class="main-sunImage"><span id="sunSetTime"></span> <span>PM</span></div>
-                                <img class="sunset-link" src="images/Sunset.svg">
+                            <div class="main-sunImage sunset col-6 py-1">
+                                <div class="glass-more main-sunImage-inner sunset-inner"><span id="sunSetTime"></span> <span class="time-unit">PM</span></div>
+                                <!-- <img class="sunset-link" src="images/Sunset.svg" width="70px"> -->
                             </div>
                         </div>
                             
                         <div class="main-date-wind d-flex">
-                            <div class="main-date col-5 fs-4">
+                            <div class="glass main-date col-5 fs-4">
                                 <div class=" fs-1" style="text-align:left;" id="year"></div>
                                 <div class=" fs-3" style="text-align: left;"> <span id="monthDay"></span> <span id="weekDay"></span></div>
                             </div>
-                            <div class="main-wind col-5 fs-4 rounded d-flex align-items-center" >
-                                <div>風速</div><span id="Ws" style="font-size: 40px; margin-left: 15px;"></span>
+                            <div class="glass main-wind col-5 fs-4 rounded d-flex align-items-center" >
+                                <div>風速</div><span id="Ws" style="font-size: 40px; margin-left: 15px;">0</span>
                                 <span id="wind"> 
                                 <img id="ws-img" src="images/wind10.svg"/>
                                 </span>
@@ -109,21 +105,51 @@
                         <!-- 今天與明天與後天 -->
                         <div class="main-timeline d-flex flex-wrap" id="weatherDataContainer">
 
-                            <div class="main-forecast col-12 col-xl-4" id="weatherData1" >
-                                今夜明晨
+                            <div class="glass main-forecast col-12 col-xl-4" id="weatherData1" >
+                                <div id="timeDescribe">今夜明晨</div>
+                                <div id="T">0℃</div>
+                                <div id="PoP12h">0 %</div>
+                                <div id="Wx">天知道</div>
+                            <img id="36HImg${index + 1}" 
+                            style="
+                            position: absolute;
+                            bottom: -30px;
+                            right: -30px;
+                            z-index: 3;
+                            opacity: 0.7;" src="images/Sunset.svg">
                             </div>
-                            <div class="main-forecast col-12 col-xl-4"  id="weatherData2">
-                                明日白天
+                            <div class="glass main-forecast col-12 col-xl-4"  id="weatherData2">
+                                <div id="timeDescribe">明日白天</div>
+                                <div id="T">0℃</div>
+                                <div id="PoP12h">0 %</div>
+                                <div id="Wx">天知道</div>
+                                <img id="36HImg${index + 1}" 
+                                style="
+                                position: absolute;
+                                bottom: -30px;
+                                right: -30px;
+                                z-index: 3;
+                                opacity: 0.7;" src="images/Sunset.svg">
                             </div>
-                            <div class="main-forecast col-12 col-xl-4"  id="weatherData3">
-                                明日晚間
+                            <div class="glass main-forecast col-12 col-xl-4"  id="weatherData3">
+                                <div id="timeDescribe">明日晚間</div>
+                                <div id="T">0℃</div>
+                                <div id="PoP12h">0 %</div>
+                                <div id="Wx">天知道</div>
+                                <img id="36HImg${index + 1}" 
+                                style="
+                                position: absolute;
+                                bottom: -30px;
+                                right: -30px;
+                                z-index: 3;
+                                opacity: 0.7;" src="images/Sunset.svg">
                             </div>
                         </div>
                         <!-- 空氣品質檢測-->
                         <div class="aqi-container">
                             <div class="main-AQI position-relative">
                                 <img id ="aqiIcon" src="" />
-                                <div class="main-AQI-inside py-3 px-3 rounded">
+                                <div class="glass main-AQI-inside py-3 px-3 rounded">
                                             <div>
                                                 <div class="fs-3" id="city"></div>
                                                 <select style="width: 120px;" name="fruits" id="sitenameSelect">
@@ -133,14 +159,14 @@
                                             <div class="d-flex my-3">
                                                 <div class="col-6 main-AQI-left-area">
                                                     <div class=" fs-3">AQI</div>
-                                                    <div>空氣品質指標</div>
+                                                    <div style="font-size:16px;">空氣品質指標</div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <span class="rounded-circle fs-1 p-2" style="border: 1px solid #d0d0d0;" id="aqi">58</span>
+                                                <div class="col-6 aqi-num">
+                                                    <span class="rounded-circle fs-1 p-2 aqi-num-itself" style="border: 1px solid #d0d0d0;" id="aqi">58</span>
                                                 </div>
                                             </div>
                                             <div id="aqiStatus">良好</div>
-                                            <div>汙染物<span> 。･ﾟ･</span><span style="margin: 0 auto;" id="pollutant">細微懸浮粒</span>･ﾟ･</div>
+                                            <div style="text-align:center;"><div  style="font-size:18px;padding:10px;">汙染物</div><span> 。･ﾟ･</span><span style="margin: 0 auto;" id="pollutant">細微懸浮粒</span>･ﾟ･。</div>
                                         </select>
                                 </div>
                             </div>
@@ -148,7 +174,7 @@
                     </div>
                 </div>
                 <!--Map-->
-                <div class="col-12 col-xl-6 order-1 d-flex justify-content-center align-items-center " >
+                <div class="col-12 col-xl-4 order-1 d-flex justify-content-center align-items-center " >
                     <div class="wrapper">
                         <div class="tooltip"></div>
                         <div class="map">
@@ -402,13 +428,13 @@
                     </div>
                 </div>
         </div>
-        <footer class="footer container-fluid header px-3 py-2  text-center bg-light" style="padding:0" >
+        <footer class="glass footer container-fluid header px-3 py-2 text-center bg-light" style="padding:0;" >
             <div class="pokemon-footer">
                 <a href=""><img src="" id="pokemon" alt="絕對定位圖片" /></a>
                 <div class="mb-1 fs-10" id="pokemon-welcome"> </div>
-                <div class="fw-bold mt-1 mb-2 footer_title fs-4">COPYRIGHT © 2023 臺灣天氣預測</div>
-                <div class="mb-1 fs-10">劉宣甫、林右銘、鄒柏軒、陳慧樺、王柏淵</div>
-                <div class="mb-1 fs-10 ">
+                <div class="mt-1 mb-2 footer_title fs-6" style="font-size:12px;font-weight: 500;">COPYRIGHT © 2023 臺灣天氣預測</div>
+                <div class="mb-1 fs-10" style="font-size:14px;">劉宣甫、林右銘、鄒柏軒、陳慧樺、王柏淵</div>
+                <div class="mb-1 fs-10" style="font-size:14px;">
                     資料來源：
                     <a
                     class="footer_link"
