@@ -55,14 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
       tooltip.style.left = `${e.clientX - wrapperRect.left + 8}px`;
       tooltip.style.top = `${e.clientY - wrapperRect.top - 35}px`;
 
-      console.log(tooltip.textContent, tooltip.style.left, tooltip.style.top);
+      // console.log(tooltip.textContent, tooltip.style.left, tooltip.style.top);
     });
 
     // 添加滑鼠移出事件監聽器
     path.addEventListener("mouseout", function (e) {
       tooltip.textContent = "";
       tooltip.style.display = "none";
-      console.log(tooltip.style.left, tooltip.style.top);
+      // console.log(tooltip.style.left, tooltip.style.top);
     });
   });
 });
