@@ -20,7 +20,9 @@ function changePokemon(cityName, pokemon){
     const pokemonWelcome = document.querySelector("#pokemon-welcome");
 
     const bodyWrapper = document.querySelector("body div"); 
-    const footer = document.querySelector(".footer");
+
+    const footer = document.querySelector(".pokemon-footer")
+
 
     const weatherText = document.querySelector("#Wx").textContent;
 
@@ -30,6 +32,7 @@ function changePokemon(cityName, pokemon){
 
     if (weatherText.includes("晴天")) {
       pokemon.src = `https://static.tumblr.com/6d5fad2410cb092840ad58aa00051d01/ozvqtky/N7Onxn9yb/tumblr_static_1orkl5uzm4n40w444k88gssso.gif`
+      pokemon.style.display = "flex";
       pokemonKing = "小火龍";
       bodyWrapper.style.backgroundColor = "rgba(255, 10, 10, 0.05)";
       bodyWrapper.style.transition = "background-color 0.7s";
@@ -40,13 +43,15 @@ function changePokemon(cityName, pokemon){
 
     }else if (weatherText.includes("多雲") || weatherText.includes("陰天")) {
         pokemon.src = `https://media.tenor.com/Pwn9ZYb7C2QAAAAi/gengar-pokemon.gif`;
+        pokemon.style.display = "flex";
         pokemonKing = "梗鬼";
         bodyWrapper.style.backgroundColor = "rgba(128, 10, 128, 0.05)";
         bodyWrapper.style.transition = "background-color 0.7s";
         footer.style.backgroundColor = "rgba(128, 10, 128, 0.5)";
-        footer.style.transition = "background-color 0.5s";
+        footer.style.transition = "background-color 0.5s ";
     }else if (weatherText.includes("雨")) {
         pokemon.src = `https://64.media.tumblr.com/tumblr_ma4ft6OXxw1rfjowdo1_500.gif`;
+        pokemon.style.display = "flex";
         pokemonKing = "傑尼龜";
         bodyWrapper.style.backgroundColor = "rgba(173, 216, 230, 0.5)";
         bodyWrapper.style.transition = "background-color 0.7s";
