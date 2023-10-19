@@ -1,3 +1,7 @@
+.footer {
+  position: relative;
+}
+
 #pokemon {
   position: absolute;
   bottom: 10px;
