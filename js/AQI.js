@@ -4,7 +4,7 @@
 //取得API資料
 function getAQIData() {
   //自己去申請帳號就有了
-  const apiKey = "4a670a0d-e63d-4322-a733-4c3da2fd5c86";
+  const apiKey = "540e2ca4-41e1-4186-8497-fdd67024ac44";
 
   //format JSON格式；offset 跳過筆數；limit 取幾筆資料
   const apiUrl = `https://data.moenv.gov.tw/api/v2/aqx_p_432?format=json&offset=0&limit=100&api_key=${apiKey}`;
