@@ -1,5 +1,6 @@
 #pokemon {
   position: absolute;
-  bottom: 100px;
+  bottom: 10px;
   right: 50px;
-}/*# sourceMappingURL=pokemon.css.map */
+  width: 80px;
+}

@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
       updateWeather36HElements();
       getAstronomicalData();
 
+      cityName = event.currentTarget.getAttribute("data-name");
+      const pokemon = document.querySelector("#pokemon");
+      changePokemon(cityName, pokemon);
+
       // console.log("地圖被點擊");
 
       tooltip.textContent = "";
