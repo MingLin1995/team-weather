@@ -16,7 +16,6 @@
 }
 .map svg {
   display: inline-block;
-  max-width: 120%;
   // width: 428.59px;
   // height: 560px;
   width: 600px;
@@ -28,8 +27,12 @@
     stroke-linejoin: round;
     fill: transparent;
     stroke: rgb(219, 108, 101);
-    stroke-width: 2px;
+    stroke-width: 1.5px;
     stroke-miterlimit: 10;
+    // stroke-dasharray: 10 5; 
+    // stroke-dasharray: 1 5; 
+    // stroke-dasharray: 2 10; 
+
     cursor: pointer;
 
     &:hover {
