@@ -14,44 +14,42 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
 
-.wrapper .weather {
-  display: inline-block;
-  color: #fff;
+  .weather {
+    display: inline-block;
+    color: #fff;
+  }
 }
-
 .map svg {
   display: inline-block;
   max-width: 100%;
   width: 428.59px;
   height: 560px;
-}
 
-.map svg path {
-  transition: all 0.3s ease-in-out;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: transparent;
-  stroke: rgba(139, 80, 21, 0.8);
-  stroke-width: 1px;
-  stroke-miterlimit: 10;
-  cursor: pointer;
-}
+  path {
+    transition: all 0.3s ease-in-out;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: transparent;
+    stroke: rgba(139, 80, 21, 0.8);
+    stroke-width: 1px;
+    stroke-miterlimit: 10;
+    cursor: pointer;
 
-.map svg path:hover {
-  fill: rgba(236, 181, 126, 0.8);
-}
-
-.map svg .is-active {
-  fill: rgba(250, 159, 66, 0.8);
+    &:hover {
+        fill: rgba(236, 181, 126, 0.8);
+    }
+  }
+  .is-active {
+    fill: rgba(250, 159, 66, 0.8);
+  }
 }
 
 .tooltip {
   display: none;
   position: absolute;
   z-index: 1000;
-  color: #96641f;
+  color: rgb(150, 100, 31);
   text-align: center;
   width: 80px;
   height: 35px;
@@ -63,10 +61,13 @@
 }
 
 @media screen and (max-width: 576px) {
-  .wrapper .map svg {
-    height: 100%;
-  }
-  .wrapper .weather {
-    margin-bottom: 20px;
-  }
+
+    .wrapper {
+        .map svg {
+            height: 100%;
+        }
+        .weather {
+            margin-bottom: 20px;
+        }
+    }
 }
