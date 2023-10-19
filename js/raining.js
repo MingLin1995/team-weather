@@ -1,5 +1,3 @@
-
-
 //自己申請帳號就有了
 const apiKey = "CWA-C5FE3759-4C7F-4E48-ADEA-8581BA76A0A2";
 
@@ -60,11 +58,11 @@ function updateDateTimeElements() {
   const currentTime = getCurrentTime();
 
   dateElement.textContent = `日期：${nowDate}`;
-  // timeElement.textContent = `現在時間：${currentTime}`;
+  timeElement.textContent = `現在時間：${currentTime}`;
 }
 
 //每秒更新一次現在時間
-setInterval(updateDateTimeElements, 1000);
+// setInterval(updateDateTimeElements, 1000);
 
 // 當天天氣
 // https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${key}
@@ -96,9 +94,13 @@ async function updateWeatherElements() {
     const weatherData = await getWeatherData();
 
     const Wx = weatherData.weatherElement[1].time[0].elementValue[0].value;
+    const WxNum = weatherData.weatherElement[1].time[0].elementValue[1].value;
+    // console.log("天氣WX", Wx);
+    // console.log("天氣WXNum", WxNum);
     const T = weatherData.weatherElement[3].time[0].elementValue[0].value;
     const PoP6h = weatherData.weatherElement[7].time[0].elementValue[0].value;
     const Ws = weatherData.weatherElement[8].time[0].elementValue[0].value;
+    console.log("風速Ws",Ws);
 
     const WxElement = document.getElementById("Wx");
     const TElement = document.getElementById("T");
@@ -109,7 +111,11 @@ async function updateWeatherElements() {
     TElement.textContent = `${T} ℃`;
     PoP6hElement.textContent = `${PoP6h}%`;
     WsElement.textContent = `${Ws} m/s`;
-    judgePoP6hElement()
+
+    judgePoP6hElement();
+    changeWXImg(WxNum);
+    changeWsImg(Ws)
+
   } catch (e) {
     console.log(e);
   }
@@ -145,7 +151,7 @@ function getWeatherData36H() {
         let timeDescribe;
         let timeBase = startTime.substr(11);
         let dateBase = startTime.substr(0, 10);
-        console.log(timeBase);
+        // console.log(timeBase);
 
         if (
           (dateBase == nowDate && timeBase == "06:00:00") ||
@@ -187,7 +193,7 @@ function getWeatherData36H() {
 async function updateWeather36HElements() {
   try {
     const weatherData36H = await getWeatherData36H();
-    console.log(weatherData36H);
+    // console.log(weatherData36H);
 
     weatherData36H.forEach((item, index) => {
       const content = `
@@ -260,7 +266,6 @@ console.log("地圖", mapElement);
 // 如果地图元素存在，则附加点击事件监听器
 if (mapElement) {
   mapElement.addEventListener("click", async function () {
-    console.log("地图被点击");
 
     // 更新天气数据
     try {
@@ -273,7 +278,3 @@ if (mapElement) {
     }
   });
 }
-
-
-
-
