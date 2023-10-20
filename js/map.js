@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
       tooltip.textContent = path.getAttribute("data-name");
       tooltip.style.display = "block";
 
-      // tooltip.style.left = `${e.pageX + 8}px`;
-      // tooltip.style.top = `${e.pageY - 35}px`;
+      tooltip.style.left = `${e.pageX + 8}px`;
+      tooltip.style.top = `${e.pageY - 35}px`;
 
       // 計算相對於 .wrapper 的位置
-      let wrapperRect = wrapper.getBoundingClientRect();
-      tooltip.style.left = `${e.clientX - wrapperRect.left + 8}px`;
-      tooltip.style.top = `${e.clientY - wrapperRect.top - 35}px`;
+      // let wrapperRect = wrapper.getBoundingClientRect();
+      // tooltip.style.left = `${e.clientX - wrapperRect.left + 8}px`;
+      // tooltip.style.top = `${e.clientY - wrapperRect.top - 35}px`;
 
       // console.log(tooltip.textContent, tooltip.style.left, tooltip.style.top);
     });

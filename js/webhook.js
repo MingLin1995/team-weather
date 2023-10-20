@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Sun
 
+  const sunRiseTime = document.querySelector("#sunRiseTime");
+  const sunSetTime = document.querySelector("#sunSetTime");
+
   const sunRiseImg = document.querySelector(".sunrise");
   const sunSetImg = document.querySelector(".sunset");
 
@@ -385,8 +388,8 @@ async function sendSunToZapier(cityName, sunRiseTime, sunSetTime, sunRise){
   const newDateStr = result.newDateStr;
   const currentTime = result.currentTime;
 
-  const sunRiseTimeStr = convertTo12HourTime(sunRiseTime.textContent.replace( "日出：", "").trim());
-  const sunSetTimeStr = convertTo12HourTime(sunSetTime.textContent.replace( "日落：", "").trim());
+  const sunRiseTimeStr = sunRiseTime.textContent.replace( "日出", "").trim();
+  const sunSetTimeStr = sunSetTime.textContent.replace( "日落", "").trim();
 
 
   let mainImgUrl, keyword, avatarUrl ="";

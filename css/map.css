@@ -1,6 +1,19 @@
 @charset "UTF-8";
+@media screen and (min-width: 700px) {
+  .wrapper {
+    position: fixed;
+    top: 50px;
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    position: static;
+  }
+}
+
 .wrapper {
-  position: relative;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -16,8 +29,8 @@
 
 .map svg {
   display: inline-block;
-  width: 600px;
-  height: 1000px;
+  width: 800px;
+  height: 800px;
 }
 
 .map svg path {
