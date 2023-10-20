@@ -30,8 +30,11 @@ function getMonthDay() {
   ];
 
   const monthName = monthNames[Month];
+
+  
   let day = today.getDate();
 
+  
   MonthDay = `${monthName}${day}`;
 
   return MonthDay;
@@ -166,3 +169,79 @@ function changeAQIImg(aqi) {
     image.src = "images/AQI4000.svg";
   }
 }
+
+function animateValue(id, start, end, duration, unit, formalName) {
+  
+  const element = document.getElementById(id);
+  const range = end - start;
+  let elapsed = 0;  // 已經過的時間
+
+  const getColorForPoP6h = (value) => {
+    let r = 0, g = 0, b = 0, a = 1;
+    if (value <= 20) {
+        g = 150;
+        b = 200;
+        a = 0.5;
+    } else if (value <= 40) {
+        g = 100;
+        b = 255;
+        a = 0.7;
+    } else if (value <= 70) {
+        g = 50;
+        b = 200;
+        a = 0.9;
+    } else {
+        r = 0;
+        g = 0;
+        b = 0;
+        a = 1;
+    }
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+};
+
+const getColorForT = (value) => {
+    let r = 0, g = 0, b = 0;
+    if (value < 20) {
+        r = 0;
+        g = Math.floor((100 * (20 - value)) / 20);
+        b = Math.floor((200 * (20 - value)) / 20);
+    } else if (value <= 30) {
+        r = Math.floor((200 * (value - 20)) / 10);
+        g = Math.floor((100 * (30 - value)) / 10);
+        b = 0;
+    } else {
+        r = 200 + Math.floor((55 * (value - 30)) / 20);
+        g = 0;
+        b = Math.floor((100 * (value - 30)) / 20);
+    }
+    return `rgb(${r}, ${g}, ${b})`;
+};
+
+  const step = (time) => {
+      if (!elapsed) elapsed = time;
+
+      const timeElapsed = time - elapsed;
+      const progress = timeElapsed / duration;
+      const easing = 0.5 - 0.5 * Math.cos(progress * Math.PI);
+      const current = Math.round(start + (range * easing));
+
+      if (formalName === "PoP6h") {
+          const color = getColorForPoP6h(current);
+          element.style.color = color;
+      } else if (formalName === "T") {
+          const color = getColorForT(current);
+          element.style.color = color;
+      }
+
+      element.textContent = current + unit;
+
+      if (timeElapsed < duration) {
+          requestAnimationFrame(step);
+      } else {
+          element.textContent = end + unit;
+      }
+  };
+
+  requestAnimationFrame(step);
+}
+

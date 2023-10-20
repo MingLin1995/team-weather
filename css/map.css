@@ -16,7 +16,6 @@
 
 .map svg {
   display: inline-block;
-  max-width: 120%;
   width: 600px;
   height: 1000px;
 }
@@ -27,7 +26,7 @@
   stroke-linejoin: round;
   fill: transparent;
   stroke: #db6c65;
-  stroke-width: 2px;
+  stroke-width: 1.5px;
   stroke-miterlimit: 10;
   cursor: pointer;
 }
