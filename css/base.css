@@ -10,13 +10,18 @@ button:hover {
 
 body {
   background: #fcf9f9;
-  color: #795f5f;
+  color: #795F5F;
 }
 
 .base-nav {
   border-radius: 10px;
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
-  height: 50px;
+  height: 90px;
+  cursor: pointer;
+}
+
+.base-nav:hover {
+  opacity: 0.7;
 }
 
 .footer {
@@ -66,7 +71,7 @@ body {
   font-size: 200px;
   overflow: hidden;
   opacity: 0.5;
-  font-family: "urbanist";
+  font-family: 'urbanist';
   font-weight: 200;
   margin-left: -40px;
   margin-bottom: -10px;
@@ -206,6 +211,11 @@ body {
   position: relative;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.main-AQI-inside:hover {
+  opacity: 0.8;
 }
 
 #sitenameSelect {
@@ -395,6 +405,11 @@ body {
   padding: 10px;
   width: 430px;
   margin: 10px;
+  cursor: pointer;
+}
+
+.main-sun-time:hover {
+  opacity: 0.8;
 }
 
 #currentTime {
