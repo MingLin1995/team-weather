@@ -38,11 +38,6 @@
                                     <i class="fab fa-github"></i>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </li>
                             <!-- 可以添加更多預留按鈕 -->
                         </ul>
                     </div>
@@ -54,6 +49,21 @@
                     <div class="main-bg rounded p-2">
                         <!-- 天氣、溫度、縣市 -->
 
+                        
+
+                        <div id="currentTime" style="font-size: 40px;font-weight: 100;"><span style="font-size:17px;font-weight:300;">目前時間</span> 00:00:00</div>
+                        <div class="main-date-wind d-flex">
+                            <div class="glass main-date col-5 col-xl-6 fs-4">
+                                <div class=" fs-1" style="text-align:left;" id="year">2024</div>
+                                <div class=" fs-3" style="text-align: left;"> <span id="monthDay">Jan. 1</span> <span id="weekDay">Wed.</span></div>
+                            </div>
+                            <div class="glass main-wind col-5 fs-4 rounded d-flex align-items-center" >
+                                <div style="font-weight: 400;font-size: 22px;">風速</div><span id="Ws" style="font-size: 40px; margin-left: 15px;">0 m/s</span>
+                                <span id="wind"> 
+                                <img id="ws-img" src="images/wind10.svg" width="20px"/>
+                                </span>
+                            </div>
+                        </div>
                         <div class="glass main-dashboard d-flex" >
                             <div class="col-8">
                                 <img src="" id="wx-img" width="250px"/>
@@ -79,28 +89,20 @@
                         
                         <div class="glass main-sun d-flex">
                             <div class="main-sunImage sunrise col-6 py-1" >
-                                <div class="glass-more main-sunImage-inner sunrise-inner"><span id="sunRiseTime"></span> <span>AM</span></div>
-                                <!-- <img class="sunrise-link" src="images/Sunrise.svg" width="70px"> -->
+                                <div class="glass-more main-sunImage-inner sunrise-inner"><span id="sunRiseTime">日出 00:00</span></div>
+                                <img class="sunrise-link" src="images/Sunrise.svg" width="70px">
                             </div>
+                   
                             <div class="main-sunImage sunset col-6 py-1">
-                                <div class="glass-more main-sunImage-inner sunset-inner"><span id="sunSetTime"></span> <span class="time-unit">PM</span></div>
-                                <!-- <img class="sunset-link" src="images/Sunset.svg" width="70px"> -->
+                                <div class="glass-more main-sunImage-inner sunset-inner"><span id="sunSetTime">日落 00:00</span></div>
+                                <img class="sunset-link" src="images/Sunset.svg" width="70px">
                             </div>
-                        </div>
                             
-                        <div class="main-date-wind d-flex">
-                            <div class="glass main-date col-5 fs-4">
-                                <div class=" fs-1" style="text-align:left;" id="year"></div>
-                                <div class=" fs-3" style="text-align: left;"> <span id="monthDay"></span> <span id="weekDay"></span></div>
-                            </div>
-                            <div class="glass main-wind col-5 fs-4 rounded d-flex align-items-center" >
-                                <div>風速</div><span id="Ws" style="font-size: 40px; margin-left: 15px;">0</span>
-                                <span id="wind"> 
-                                <img id="ws-img" src="images/wind10.svg"/>
-                                </span>
-                            </div>
                         </div>
-
+                        <div class="glass main-sun-time d-flex flex-column justify-content-center">
+                            <div class="sunRiseTime-show col-12 py-1">計算日出時間⋯⋯</div>
+                            <div class="sunSetTime-show col-12 py-1">計算日落時間⋯⋯</div>
+                        </div>
 
                         <!-- 今天與明天與後天 -->
                         <div class="main-timeline d-flex flex-wrap" id="weatherDataContainer">
@@ -108,7 +110,7 @@
                             <div class="glass main-forecast col-12 col-xl-4" id="weatherData1" >
                                 <div id="timeDescribe">今夜明晨</div>
                                 <div id="T">0℃</div>
-                                <div id="PoP12h">0 %</div>
+                                <div id="PoP12h"><span>🌧️</span>0 %</div>
                                 <div id="Wx">天知道</div>
                             <img id="36HImg${index + 1}" 
                             style="
@@ -149,7 +151,7 @@
                         <div class="aqi-container">
                             <div class="main-AQI position-relative">
                                 <img id ="aqiIcon" src="" />
-                                <div class="glass main-AQI-inside py-3 px-3 rounded">
+                                <div class="glass-max main-AQI-inside py-3 px-3">
                                             <div>
                                                 <div class="fs-3" id="city"></div>
                                                 <select style="width: 120px;" name="fruits" id="sitenameSelect">
@@ -162,11 +164,11 @@
                                                     <div style="font-size:16px;">空氣品質指標</div>
                                                 </div>
                                                 <div class="col-6 aqi-num">
-                                                    <span class="rounded-circle fs-1 p-2 aqi-num-itself" style="border: 1px solid #d0d0d0;" id="aqi">58</span>
+                                                    <span class="rounded-circle fs-1 p-2 aqi-num-itself" style="border: 3px dashed #ffffff;" id="aqi">0</span>
                                                 </div>
                                             </div>
                                             <div id="aqiStatus">良好</div>
-                                            <div style="text-align:center;"><div  style="font-size:18px;padding:10px;">汙染物</div><span> 。･ﾟ･</span><span style="margin: 0 auto;" id="pollutant">細微懸浮粒</span>･ﾟ･。</div>
+                                            <div style="text-align:center;"><div  style="font-size:18px;padding:10px;font-weight: 400;">汙染物</div><span> 。･ﾟ･</span><span style="margin: 0 auto;" id="pollutant">無</span>･ﾟ･。</div>
                                         </select>
                                 </div>
                             </div>

@@ -10,6 +10,9 @@ let countyValue;
 const dateElement = document.getElementById("date");
 const timeElement = document.getElementById("time");
 
+let sunRiseTimeGlobal = "";
+let sunSetTimeGlobal = "";
+
 //今天日期
 function getCurrentDate() {
   const now = new Date();
@@ -122,14 +125,15 @@ async function updateWeatherElements() {
     const nowTel = parseInt(`${T}`, 10);  // 請將"新的T值"替換為實際的值
 
     const lastPoP6h = parseInt(PoP6hElement.textContent.replace(/%/g, ""), 10);
+    console.log("剛才的降雨率", lastPoP6h)
     const nowPoP6h = parseInt(`${PoP6h}`, 10);  // 請將"新的PoP6h值"替換為實際的值
 
     const lastWs = parseFloat(WsElement.textContent.replace(/m\/s/g, "").trim());
     const nowWs = parseFloat(`${Ws}`);  // 請將"新的Ws值"替換為實際的值
 
-    animateValue("T", lastTel, nowTel, 2000, "°C", T );
-    animateValue("PoP6h", lastPoP6h, nowPoP6h, 3000,  "%", PoP6h);
-    animateValue("Ws", lastWs, nowWs, 2000, " m/s", Ws);
+    animateValue("T", lastTel, nowTel, 2000, "°C", "T" );
+    animateValue("PoP6h", lastPoP6h, nowPoP6h, 300,  "%", "PoP6h");
+    animateValue("Ws", lastWs, nowWs, 2000, " m/s", "Ws");
 
     // animateValue("AQI", 50, 100, 2000, "", aqi);
 
@@ -138,7 +142,7 @@ async function updateWeatherElements() {
     PoP6hElement.textContent = `${PoP6h}%`;
     WsElement.textContent = `${Ws} m/s`;
 
-    changeWXImg(WxNum);
+    changeWXImg(WxNum, sunRiseTimeGlobal, sunSetTimeGlobal);
     changeWsImg(Ws);
     changePopImg(PoP6h);
     changeTImg(T);
@@ -228,7 +232,7 @@ async function updateWeather36HElements() {
       const content = `
 		  <div id="timeDescribe">${item.timeDescribe}</div>
 		  <div id="T">${item.T} ℃</div>
-		  <div id="PoP12h">${item.PoP12h} %</div>
+		  <div id="PoP12h"><span>🌧️ </span>${item.PoP12h} %</div>
 		  <div id="Wx">${item.Wx}</div>
       <img id="36HImg${index + 1}" 
       style="
@@ -236,13 +240,18 @@ async function updateWeather36HElements() {
       bottom: -30px;
       right: -30px;
       z-index: 3;
+      max-width : 160px;
       opacity: 0.7;" src="images/Sunset.svg">`;
       const container = document.getElementById(`weatherData${index + 1}`);
       if (container) {
         container.innerHTML = content;
       }
       const imgId = `36HImg${index + 1}`;
-      changeWXImg36H(item.WxNum, imgId);
+      changeWXImg36H(item.WxNum, imgId, sunRiseTimeGlobal, sunSetTimeGlobal);
+
+      if (index == 0 || index == 2) {
+        changeWXImg36H(item.WxNum, imgId, sunRiseTimeGlobal, sunSetTimeGlobal, true);
+      }
 
       console.log(`第${imgId}是${item.WxNum}`);
     });
@@ -250,9 +259,6 @@ async function updateWeather36HElements() {
     console.log(e);
   }
 }
-
-updateWeatherElements();
-updateWeather36HElements();
 
 //日出、日落
 function getAstronomicalData() {
@@ -263,6 +269,8 @@ function getAstronomicalData() {
   const nextDate = `${Today.getFullYear()}-${Today.getMonth() + 1}-${
     Today.getDate() + 1
   }`;
+
+  // const nowDate = getCurrentDate();
 
   //yyyy-MM-dd
   countyValue = countyElement.textContent;
@@ -287,20 +295,92 @@ function getAstronomicalData() {
     });
 }
 
+let intervalId = null;
+
 function getSunRiseSet(astronomicalData) {
   const sunRiseTimeElement = document.getElementById("sunRiseTime");
   const sunSetTimeElement = document.getElementById("sunSetTime");
   const sunRiseTime = astronomicalData.SunRiseTime;
   const sunSetTime = astronomicalData.SunSetTime;
-  sunRiseTimeElement.innerHTML = `日出<br> ${sunRiseTime}`;
-  sunSetTimeElement.innerHTML = `日落<br> ${sunSetTime}`;
 
+  sunRiseTimeGlobal = astronomicalData.SunRiseTime;
+  console.log("日出時間", sunRiseTimeGlobal);
+  sunSetTimeGlobal = astronomicalData.SunSetTime;
 
+  const sunRiseTime12 = to12HourFormat(sunRiseTime);
+  const sunSetTime12 = to12HourFormat(sunSetTime);
+  sunRiseTimeElement.innerHTML = `日出<br> ${sunRiseTime12}`;
+  sunSetTimeElement.innerHTML = `日落<br> ${sunSetTime12}`;
 
+  const currentTimeElement = document.getElementById("currentTime");
+  const sunRiseTimeFromNow = document.querySelector(".sunRiseTime-show");
+  const sunSetTimeFromNow = document.querySelector(".sunSetTime-show");
 
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+
+  intervalId = setInterval(() => {
+    const now = new Date();
+    const today = new Date(now);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+  
+    let sunRiseToday = new Date(today.toDateString() + ' ' + sunRiseTime);
+    let sunSetToday = new Date(today.toDateString() + ' ' + sunSetTime);
+  
+    let sunRiseTomorrow = new Date(tomorrow.toDateString() + ' ' + sunRiseTime);
+    
+    let diffToSunRise = (sunRiseToday - now) / 60000; // 轉換成分鐘
+    let diffToSunSet = (sunSetToday - now) / 60000;  // 轉換成分鐘
+    
+    let sunRiseMessage = '';
+    let sunSetMessage = '';
+  
+    // 如果日出已經發生，則考慮隔天的日出
+    if (diffToSunRise < 0) {
+      if (Math.abs(diffToSunRise) <= 15) {
+        sunRiseMessage = '剛剛才日出過';
+      } else {
+        diffToSunRise = (sunRiseTomorrow - now) / 60000; // 轉換成分鐘
+      }
+    }
+  
+    // 如果還沒有發生日出
+    if (diffToSunRise >= 0) {
+      if (diffToSunRise <= 15) {
+        sunRiseMessage = '馬上就日出了';
+      } else {
+        sunRiseMessage = `離日出還有 ${Math.floor(diffToSunRise / 60)} 小時 ${Math.floor(diffToSunRise % 60)} 分鐘`;
+      }
+    }
+  
+    // 如果日落已經發生
+    if (diffToSunSet < 0) {
+      if (Math.abs(diffToSunSet) <= 15) {
+        sunSetMessage = '剛剛才日落了';
+      }
+    }
+    
+    // 如果還沒有發生日落
+    if (diffToSunSet >= 0) {
+      if (diffToSunSet <= 15) {
+        sunSetMessage = '馬上就日落了';
+      } else {
+        sunSetMessage = `離日落還有 ${Math.floor(diffToSunSet / 60)} 小時 ${Math.floor(diffToSunSet % 60)} 分鐘`;
+      }
+    }
+    
+    sunRiseTimeFromNow.innerHTML = sunRiseMessage;
+    sunSetTimeFromNow.innerHTML = sunSetMessage;
+
+  }, 500);
 }
 
 getAstronomicalData();
+updateWeatherElements();
+updateWeather36HElements();
 
 //選擇地圖元素
 let mapElement = document.querySelector(".map");
@@ -308,12 +388,13 @@ console.log("地圖", mapElement);
 
 // 如果地圖存在則監聽
 if (mapElement) {
-  mapElement.addEventListener("click", async function () {
+  mapElement.addEventListener("click", async function (e) {
+    cityName = e.currentTarget.getAttribute("data-name");
     // 更新天氣資料
     try {
+      await getAstronomicalData(cityName);
       await updateWeatherElements();
       await updateWeather36HElements();
-      await getAstronomicalData();
       await getAQIData();
     } catch (error) {
       console.error("更新天氣資料發生錯誤:", error);
