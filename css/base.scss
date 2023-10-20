@@ -1,6 +1,4 @@
-*{
-    color: #432f2f;
-}
+
 button {
     &:hover {
         cursor: pointer;
@@ -13,11 +11,11 @@ button {
 
 body {
     background: #fcf9f9;
+    color: #795F5F;
 }
 
 @mixin shadow{
     border-radius: 10px;
-    background: #FFFDFD;
     box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
 }
 
@@ -37,6 +35,7 @@ body {
     max-width: 430px;
     max-height: 220px;
     overflow: hidden;
+    cursor: pointer;
 
     #county {
         font-size: 25px;
@@ -46,8 +45,9 @@ body {
         font-weight: 400;
         font-size: 20px;
     }
-
-
+    &:hover {
+        opacity: 0.7;
+    }
 }
 .main-rain {
     @include shadow;
@@ -56,6 +56,11 @@ body {
     max-width: 430px;
     max-height: 200px;
     overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
 
     #PoP6h {
         font-size: 200px;
@@ -80,6 +85,11 @@ body {
     margin: 10px;
     margin-right: 20px;
     max-width: 200px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }
 .main-wind {
     @include shadow;
@@ -97,6 +107,12 @@ body {
         display: flex;
         justify-content: center;
     }
+
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }
 
 .main-timeline {
@@ -113,25 +129,35 @@ text-align: center;
     margin: 10px;
     text-align: left;
 
+    #timeDescribe {
+        font-size: 22px;
+        font-weight: 400;
+    }    
+
     #T {
         font-size: 35px;
     }
     #PoP12h {
         font-size: 25px;
-        color: #26749b;
         font-weight: 400;
     }
     #Wx {
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
     }
 }
 .big-container {
     margin-top: 150px;
 }
 #weatherData1, #weatherData2, #weatherData3 {
-
     border: none;
     @include shadow;
+    
     position: relative;
     padding: -50px;
     width: 200px;
@@ -141,6 +167,9 @@ text-align: center;
     width: 342px;
     height: 100%; 
     margin: 30px auto 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #aqi {
     display: flex;
@@ -160,16 +189,19 @@ text-align: center;
 }
 .main-AQI-inside {
     @include shadow;
-    border: 1px solid #d0d0d0; 
     width: 80%; 
     background-color: #ffff;
     z-index:3; 
     position: relative;
     border: none;
+    border-radius: 10px;
 }
 #sitenameSelect {
     @include shadow;
     border: none;
+    padding: 5px;
+    font-weight: 300;
+    margin-top: 10px;
 }
 .main-sunImage {
     text-align: center;
@@ -210,21 +242,38 @@ text-align: center;
 }
 
 
-
 .aqi-container {
-    //
-    // background-size: cover;
-    // padding-top: 30px;
-    // padding-bottom: 30px;
-    // margin-top: 30px;
-    // border-radius: 100%;
+    position: relative;
+    background-image: url("https://i.imgur.com/8oxpZ0i.jpeg");
+    background-size: cover;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    margin-top: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 500px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to top right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+        z-index: 1;
+        border-radius: 100%;
+    }
 }
 
 #aqiStatus {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px rgb(200, 200, 200) dashed;
+    border: 3px rgb(255, 255, 255) dashed;
     border-radius: 30px;
     padding: 5px;
 }
@@ -239,7 +288,7 @@ text-align: center;
     height: 200px;
     margin: 10px;
     overflow: hidden;
-
+ 
     &::before {
         content: "";
         position: absolute;
@@ -249,7 +298,14 @@ text-align: center;
         bottom: 0;
         background: linear-gradient(to top right, rgba(254, 214, 127, 0.6), rgba(255, 255, 255, 0));
         z-index: 1;
-      }
+    }
+
+    &:hover .sunrise-link{
+        opacity: 0.8;
+        z-index: 3;
+        width: 100px;
+        transition: 1s ease-in-out;
+    }    
 }
 
 .sunset {
@@ -263,6 +319,13 @@ text-align: center;
     margin: 10px;
     margin-left: 0;
     overflow: hidden;
+
+    &:hover .sunset-link{
+        opacity: 0.8;
+        z-index: 3;
+        width: 100px;
+        transition: 1s ease-in-out;
+    }   
 
     &::before {
         content: "";
@@ -283,6 +346,11 @@ text-align: center;
     border-radius: 10px;  
     // padding: 20px;  
 }
+.glass-max {
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(5px);  /* 應用模糊效果 */
+    border-radius: 50px;  
+}
 
 .glass-more {
     background: rgba(255, 255, 255, 0.05); 
@@ -298,6 +366,11 @@ text-align: center;
     overflow: hidden;
     font-size: 25px;
     font-weight: 400;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
 
     .main-sunImage-inner {
         width: 150px;
@@ -307,4 +380,18 @@ text-align: center;
 
  #sunSetTime, .time-unit {
     color: white;
+}
+.main-sun-time {
+    @include shadow;
+    padding: 10px;
+    width: 430px;
+    margin: 10px;
+}
+#currentTime {
+    margin: 10px;
+}
+.sunrise-link, .sunset-link {
+    opacity:0.4;
+    width: 30%;
+    padding-right: 5px;
 }

@@ -124,8 +124,6 @@ async function sendDataToZapier(county) {
     welcome = "安安 🌞，";
   }
 
-  
-
   // Wx image
   const wx = document.querySelector("#Wx");
   const weatherImage =document.querySelector("#wx-img");
@@ -388,19 +386,21 @@ async function sendSunToZapier(cityName, sunRiseTime, sunSetTime, sunRise){
   const sunSetTimeStr = convertTo12HourTime(sunSetTime.textContent.replace( "日落：", "").trim());
 
 
-  let mainImgUrl, keyword ="";
+  let mainImgUrl, keyword, avatarUrl ="";
   if (sunRise) {
     mainImgUrl = "https://www.gomaji.com/blog/wp-content/uploads/2021/06/%E9%A6%96%E5%9C%96_%E9%9A%99%E9%A0%82%E4%BA%8C%E5%BB%B6%E5%B9%B3%E6%AD%A5%E9%81%93_ooxx2081.jpg";
     keyword = "出";
+    avatarUrl ="https://i.imgur.com/UkkOa1y.jpg";
   } else {
     mainImgUrl = "https://www.winnews.com.tw/wp-content/uploads/2020/03/%E6%B7%A1%E6%B0%B4%E6%B2%99%E5%B4%99%E4%B8%96%E7%95%8C%E5%8D%81%E5%A4%A7%E5%A4%95%E9%99%BD-scaled.jpg";
     keyword = "落";
+    avatarUrl ="https://i.imgur.com/7qwB1oy.jpg";
   }
 
   const payload = {
     "content": `${newDateStr} ${currentTime}，${cityName} 今天的日${keyword}時間為`,
     "username": "浪漫 na 機器人",
-    "avatar_url": "https://i.imgur.com/YsdUgwS.jpg",
+    "avatar_url": `${avatarUrl}`,
     "embeds": [
       {
         "author": {

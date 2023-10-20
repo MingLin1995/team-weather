@@ -1,11 +1,8 @@
 #weatherData1, #weatherData2, #weatherData3{
     height: 170px; 
-    border: 1px solid #d0d0d0;
     border-radius: 10px;
-    background-color: azure;
     padding: 10px;
     position: relative;
-
 }
 
 

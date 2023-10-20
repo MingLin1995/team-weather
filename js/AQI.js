@@ -67,6 +67,12 @@ function getInformation(data) {
   }
   // 找到符合 county 和 sitename 的資料，顯示相關資訊
   const aqiNumber = document.getElementById("aqi");
+  const lastAqi = parseInt(aqiNumber.textContent);
+  const nowAqi = parseInt(siteData.aqi)
+
+  animateValue("aqi", lastAqi, nowAqi, 1000, "", "aqi");
+
+
   aqiNumber.textContent = siteData.aqi;
 
   const pollutantInformation = document.getElementById("pollutant");
