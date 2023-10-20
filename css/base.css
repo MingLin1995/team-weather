@@ -10,7 +10,7 @@ button:hover {
 
 body {
   background: #fcf9f9;
-  color: #795f5f;
+  color: #795F5F;
 }
 
 .base-nav {
@@ -71,7 +71,7 @@ body {
   font-size: 200px;
   overflow: hidden;
   opacity: 0.5;
-  font-family: "urbanist";
+  font-family: 'urbanist';
   font-weight: 200;
   margin-left: -40px;
   margin-bottom: -10px;
@@ -165,9 +165,7 @@ body {
   margin-top: 150px;
 }
 
-#weatherData1,
-#weatherData2,
-#weatherData3 {
+#weatherData1, #weatherData2, #weatherData3 {
   border: none;
   border-radius: 10px;
   box-shadow: 3px 3px 10px 1px rgba(149, 105, 105, 0.25);
@@ -235,7 +233,7 @@ body {
 }
 
 .main-T {
-  color: #795f5f;
+  color: #795F5F;
   font-size: 60px;
 }
 
@@ -257,12 +255,7 @@ body {
 }
 
 @media (min-width: 1400px) {
-  .container,
-  .container-lg,
-  .container-md,
-  .container-sm,
-  .container-xl,
-  .container-xxl {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     max-width: 1600px;
   }
 }
@@ -289,11 +282,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to top right,
-    rgba(255, 255, 255, 0.4),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to top right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   z-index: 1;
   border-radius: 100%;
 }
@@ -325,11 +314,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to top right,
-    rgba(254, 214, 127, 0.6),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to top right, rgba(254, 214, 127, 0.6), rgba(255, 255, 255, 0));
   z-index: 1;
 }
 
@@ -366,12 +351,12 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to top right,
-    rgba(67, 14, 14, 0.4),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to top right, rgba(67, 14, 14, 0.4), rgba(255, 255, 255, 0));
   z-index: 1;
+}
+
+.container-all {
+  margin-top: 100px;
 }
 
 .glass {
@@ -414,8 +399,7 @@ body {
   z-index: 2;
 }
 
-#sunSetTime,
-.time-unit {
+#sunSetTime, .time-unit {
   color: white;
 }
 
@@ -436,12 +420,8 @@ body {
   margin: 10px;
 }
 
-.sunrise-link,
-.sunset-link {
+.sunrise-link, .sunset-link {
   opacity: 0.4;
   width: 30%;
   padding-right: 5px;
-}
-body {
-  overflow-x: hidden;
 }
