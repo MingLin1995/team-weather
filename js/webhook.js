@@ -271,14 +271,17 @@ async function sendAirToZapier(cityName, selectedOption){
   const currentTime = result.currentTime;
   night = result.night;
 
-  let imgUrl, iconUrl;
-  if(night){
-    imgUrl = "https://i.imgur.com/C67obDr.png"
-    iconUrl = "https://i.imgur.com/C67obDr.png";
-  } else {
-    imgUrl = "https://i.imgur.com/YsdUgwS.jpg"
-    iconUrl = "https://i.imgur.com/JkkfA8i.png";
-  }
+  // let imgUrl, iconUrl;
+  // if(night){
+  //   imgUrl = "https://i.imgur.com/C67obDr.png"
+  //   iconUrl = "https://i.imgur.com/C67obDr.png";
+  // } else {
+  //   imgUrl = "https://i.imgur.com/YsdUgwS.jpg"
+  //   iconUrl = "https://i.imgur.com/JkkfA8i.png";
+  // }
+
+  let imgUrl = "https://i.imgur.com/iZ90pFJ.jpg"
+  let iconUrl = "https://i.imgur.com/iZ90pFJ.jpg";
 
 
   const aqi = document.querySelector("#aqi").textContent;
