@@ -128,12 +128,12 @@ async function updateWeatherElements() {
     console.log("剛才的降雨率", lastPoP6h)
     const nowPoP6h = parseInt(`${PoP6h}`, 10);  // 請將"新的PoP6h值"替換為實際的值
 
-    const lastWs = parseFloat(WsElement.textContent.replace(/m\/s/g, "").trim());
-    const nowWs = parseFloat(`${Ws}`);  // 請將"新的Ws值"替換為實際的值
+    const lastWs = Math.round(parseFloat(WsElement.textContent.replace(/m\/s/g, "").trim()));
+    const nowWs = Math.round(parseFloat(`${Ws}`));  // 請將"新的Ws值"替換為實際的值
 
-    animateValue("T", lastTel, nowTel, 2000, "°C", "T" );
+    animateValue("T", lastTel, nowTel, 1800, "°C", "T" );
     animateValue("PoP6h", lastPoP6h, nowPoP6h, 300,  "%", "PoP6h");
-    animateValue("Ws", lastWs, nowWs, 2000, " m/s", "Ws");
+    animateValue("Ws", lastWs, nowWs, 1000, " m/s", "Ws");
 
     // animateValue("AQI", 50, 100, 2000, "", aqi);
 
