@@ -21,7 +21,12 @@ body {
 
 .base-nav {
     @include shadow;
-    height: 50px;
+    height: 90px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }
 
 .footer {
@@ -195,6 +200,11 @@ text-align: center;
     position: relative;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
 #sitenameSelect {
     @include shadow;
@@ -386,6 +396,11 @@ text-align: center;
     padding: 10px;
     width: 430px;
     margin: 10px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
 #currentTime {
     margin: 10px;

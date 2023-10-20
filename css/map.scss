@@ -1,7 +1,21 @@
 @charset "UTF-8";
 
+@media screen and (min-width: 700px) {
+  .wrapper {
+    position: fixed;
+    top: 50px;
+    right: 100px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    position: static;
+  }
+}
+
+
 .wrapper {
-  position: relative;
+  // position: relative;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -14,12 +28,13 @@
     color: #fff;
   }
 }
+
 .map svg {
   display: inline-block;
   // width: 428.59px;
   // height: 560px;
-  width: 600px;
-  height:1000px;
+  width: 800px;
+  height: 800px;
 
   path {
     transition: all 0.3s ease-in-out;
@@ -61,7 +76,6 @@
 }
 
 @media screen and (max-width: 576px) {
-
     .wrapper {
         .map svg {
             height: 100%;
