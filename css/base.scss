@@ -13,6 +13,19 @@ body {
     background: #fcf9f9;
     color: #795F5F;
 }
+button {
+    &:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+}
+.container-xl {
+    margin-top: 200px;
+}
+
+body {
+    background: #fcf9f9;
+}
 
 @mixin shadow{
     border-radius: 10px;
@@ -21,6 +34,7 @@ body {
 
 .base-nav {
     @include shadow;
+    height: 50px;
     height: 50px;
 }
 
@@ -54,6 +68,7 @@ body {
     padding: 10px;
     margin: 10px;
     max-width: 430px;
+    max-width: 430px;
     max-height: 200px;
     overflow: hidden;
     cursor: pointer;
@@ -66,6 +81,7 @@ body {
         font-size: 200px;
         overflow: hidden;
         opacity: 0.5;
+        opacity: 0.5;
         font-family: 'urbanist';
         font-weight: 200;
         margin-left: -40px;
@@ -76,6 +92,7 @@ body {
 .main-sun {
     @include shadow;
     margin: 10px;
+    max-width: 430px;
     max-width: 430px;
 }
 .main-date {
@@ -154,6 +171,9 @@ text-align: center;
 .big-container {
     margin-top: 150px;
 }
+.big-container {
+    margin-top: 150px;
+}
 #weatherData1, #weatherData2, #weatherData3 {
     border: none;
     @include shadow;
@@ -170,6 +190,13 @@ text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#aqi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
 }
 #aqi {
     display: flex;
