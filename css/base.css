@@ -1,4 +1,11 @@
 @charset "UTF-8";
+html, body {
+  overflow-x: hidden;
+  /* 隱藏X軸的捲動條 */
+  width: 100%;
+  /* 設定寬度為100% */
+}
+
 button:hover {
   cursor: pointer;
   opacity: 0.5;
@@ -26,6 +33,7 @@ body {
 
 .footer {
   margin-top: 50px;
+  width: 100vw;
 }
 
 .main-dashboard {
