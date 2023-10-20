@@ -2,6 +2,14 @@ const yearElement = document.getElementById("year");
 const weekDayElement = document.getElementById("weekDay");
 const monthDayElement = document.getElementById("monthDay");
 
+setInterval(() => {
+  const now = new Date();
+  const currentTimeElement = document.getElementById("currentTime");
+  const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+  currentTimeElement.innerHTML = `<span style="font-size:16px;font-weight:400;">目前時間</span> ${currentTime}`;
+}, 1000); 
+
+
 function getYear() {
   const today = new Date();
   let year = formatNumber(today.getFullYear());
@@ -73,49 +81,99 @@ function changePopImg(PoP6h) {
   }
 }
 
-function changeWXImg(WxNum) {
-  const wxImg = document.getElementById("wx-img");
-  if (WxNum == "01") {
+// function changeWXImg(WxNum) {
+//   const wxImg = document.getElementById("wx-img");
+//   if (WxNum == "01") {
+//     wxImg.src = "images/sunny.svg";
+//     // console.log("晴天 images/sunny.svg");
+//   } else if (WxNum >= "02" && WxNum <= "03") {
+//     wxImg.src = "images/sunCloudMorining.svg";
+//     // console.log("晴天 多雲 images/sunCloudMorining.svg");
+//   } else if (WxNum >= "04" && WxNum <= "07") {
+//     wxImg.src = "images/cloud.svg";
+//     // console.log("多雲 images/cloud.svg");
+//   } else if (WxNum == "21") {
+//     wxImg.src = "images/morningRain.svg";
+//     // console.log("晴午後雷陣雨 images/morningRain.svg");
+//   } else if (WxNum >= "22") {
+//     wxImg.src = "images/rain.svg";
+//     // console.log("雷陣雨 images/rain.svg");
+//   } else {
+//     wxImg.src = " images/cloudRain.svg";
+//     // console.log("下雨 images/cloudRain.svg");
+//   }
+// }
+
+function changeWXImg36H(WxNum, imgId, sunRiseTime, sunSetTime, isNight) {
+  const wxImg = document.getElementById(imgId);
+
+  if (WxNum == "01" && isNight) {
+    wxImg.src = "images/moon.png";
+  } else if (WxNum == "01") {
     wxImg.src = "images/sunny.svg";
-    // console.log("晴天 images/sunny.svg");
+  } else if (WxNum >= "02" && WxNum <= "03" && isNight) {
+    wxImg.src = "images/moon_cloud.png";
   } else if (WxNum >= "02" && WxNum <= "03") {
     wxImg.src = "images/sunCloudMorining.svg";
-    // console.log("晴天 多雲 images/sunCloudMorining.svg");
   } else if (WxNum >= "04" && WxNum <= "07") {
     wxImg.src = "images/cloud.svg";
-    // console.log("多雲 images/cloud.svg");
   } else if (WxNum == "21") {
     wxImg.src = "images/morningRain.svg";
-    // console.log("晴午後雷陣雨 images/morningRain.svg");
   } else if (WxNum >= "22") {
     wxImg.src = "images/rain.svg";
-    // console.log("雷陣雨 images/rain.svg");
   } else {
-    wxImg.src = " images/cloudRain.svg";
-    // console.log("下雨 images/cloudRain.svg");
+    wxImg.src = "images/cloudRain.svg";
   }
 }
 
-function changeWXImg36H(WxNum, imgId) {
-  const wxImg = document.getElementById(imgId);
-  if (WxNum == "01") {
+function changeWXImg(WxNum, sunRiseTime, sunSetTime) {
+  const wxImg = document.getElementById("wx-img");
+  const now = new Date();
+  const today = new Date(now);
+  const sunRiseToday = new Date(today.toDateString() + ' ' + sunRiseTime);
+  const sunSetToday = new Date(today.toDateString() + ' ' + sunSetTime);
+
+  const isNight = now < sunRiseToday || now > sunSetToday;
+
+  // const isNight = true;
+
+  const pokemon = document.querySelector("#pokemon");
+  const county = document.querySelector("#county").textContent;
+  const mainAqiInside = document.querySelector(".main-AQI-inside");
+  const sunRiseTimeEle = document.querySelector("#sunRiseTime");
+  const mainCity = document.querySelector(".main-city");
+  const mainT = document.querySelector(".main-T");
+  const PoP6h = document.querySelector("#PoP6h");
+  const mainRain = document.querySelector(".main-rain");
+  const mainDashboard = document.querySelector(".main-dashboard");
+
+  if(isNight) {
+    changePokemon(county, pokemon);
+    document.body.style.backgroundColor = "rgba(10, 10, 10, 0.05)";
+  //   document.body.style.color = "white";
+    // mainAqiInside.style.color = "rgba(10, 15, 10, 0.3)";
+  //   sunRiseTimeEle.style.color = "black";
+  //   mainCity.style.color = "white";
+  //   mainRain.style.background = "rgba(255,230,230, 0.3)"
+  //   mainDashboard.style.background = "rgba(255,230,230, 0.3)"
+  }
+
+  if (WxNum == "01" && isNight) {
+    wxImg.src = "images/moon.png";
+  } else if (WxNum == "01") {
     wxImg.src = "images/sunny.svg";
-    // console.log("晴天 images/sunny.svg");
+  } else if (WxNum >= "02" && WxNum <= "03" && isNight) {
+    wxImg.src = "images/moon_cloud.png";
   } else if (WxNum >= "02" && WxNum <= "03") {
     wxImg.src = "images/sunCloudMorining.svg";
-    // console.log("晴天 多雲 images/sunCloudMorining.svg");
   } else if (WxNum >= "04" && WxNum <= "07") {
     wxImg.src = "images/cloud.svg";
-    // console.log("多雲 images/cloud.svg");
   } else if (WxNum == "21") {
     wxImg.src = "images/morningRain.svg";
-    // console.log("晴午後雷陣雨 images/morningRain.svg");
   } else if (WxNum >= "22") {
     wxImg.src = "images/rain.svg";
-    // console.log("雷陣雨 images/rain.svg");
   } else {
-    wxImg.src = " images/cloudRain.svg";
-    // console.log("下雨 images/cloudRain.svg");
+    wxImg.src = "images/cloudRain.svg";
   }
 }
 
@@ -170,8 +228,7 @@ function changeAQIImg(aqi) {
   }
 }
 
-function animateValue(id, start, end, duration, unit, formalName) {
-  
+function animateValue(id, start, end, duration, unit, formalName, callback) {
   const element = document.getElementById(id);
   const range = end - start;
   let elapsed = 0;  // 已經過的時間
@@ -197,25 +254,25 @@ function animateValue(id, start, end, duration, unit, formalName) {
         a = 1;
     }
     return `rgba(${r}, ${g}, ${b}, ${a})`;
-};
+  };
 
-const getColorForT = (value) => {
-    let r = 0, g = 0, b = 0;
-    if (value < 20) {
-        r = 0;
-        g = Math.floor((100 * (20 - value)) / 20);
-        b = Math.floor((200 * (20 - value)) / 20);
-    } else if (value <= 30) {
-        r = Math.floor((200 * (value - 20)) / 10);
-        g = Math.floor((100 * (30 - value)) / 10);
-        b = 0;
-    } else {
-        r = 200 + Math.floor((55 * (value - 30)) / 20);
-        g = 0;
-        b = Math.floor((100 * (value - 30)) / 20);
-    }
-    return `rgb(${r}, ${g}, ${b})`;
-};
+  const getColorForT = (value) => {
+      let r = 0, g = 0, b = 0;
+      if (value < 20) {
+          r = 0;
+          g = Math.floor((100 * (20 - value)) / 20);
+          b = Math.floor((200 * (20 - value)) / 20);
+      } else if (value <= 30) {
+          r = Math.floor((200 * (value - 20)) / 10);
+          g = Math.floor((100 * (30 - value)) / 10);
+          b = 0;
+      } else {
+          r = 200 + Math.floor((55 * (value - 30)) / 20);
+          g = 0;
+          b = Math.floor((100 * (value - 30)) / 20);
+      }
+      return `rgb(${r}, ${g}, ${b})`;
+  };
 
   const step = (time) => {
       if (!elapsed) elapsed = time;
@@ -233,7 +290,11 @@ const getColorForT = (value) => {
           element.style.color = color;
       }
 
-      element.textContent = current + unit;
+      if (callback) {
+        callback(current);
+      } else {
+        element.textContent = current + unit;
+      }
 
       if (timeElapsed < duration) {
           requestAnimationFrame(step);
@@ -245,3 +306,38 @@ const getColorForT = (value) => {
   requestAnimationFrame(step);
 }
 
+// 轉換 hh:mm 到 分鐘
+function timeToMinutes(time) {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
+}
+
+// 轉換 分鐘 到 hh:mm
+function minutesToTime(minutes) {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+}
+
+function to12HourFormat(time24) {
+  const [hour, minute] = time24.split(':');
+  let newHour = parseInt(hour, 10);
+  const ampm = newHour >= 12 ? 'PM' : 'AM';
+
+  if (newHour === 0) {
+    newHour = 12;
+  } else if (newHour > 12) {
+    newHour -= 12;
+  }
+
+  return `${newHour}:${minute} ${ampm}`;
+}
+
+// 取得當前日期 yyyy-MM-dd
+function getCurrentDate() {
+  const date = new Date();
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
