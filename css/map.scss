@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@media screen and (min-width: 700px) {
+  .wrapper {
+    position: fixed;
+    top: 50px;
+    right: 100px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    position: static;
+  }
+}
+
+
+.wrapper {
+  // position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  flex-wrap: wrap;
+  margin-top: 70px;
+
+  .weather {
+    display: inline-block;
+    color: #fff;
+  }
+}
+
+.map svg {
+  display: inline-block;
+  // width: 428.59px;
+  // height: 560px;
+  width: 800px;
+  height: 800px;
+
+  path {
+    transition: all 0.3s ease-in-out;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: transparent;
+    stroke: rgb(219, 108, 101);
+    stroke-width: 1.5px;
+    stroke-miterlimit: 10;
+    // stroke-dasharray: 10 5; 
+    // stroke-dasharray: 1 5; 
+    // stroke-dasharray: 2 10; 
+
+    cursor: pointer;
+
+    &:hover {
+        fill: rgba(219, 108, 101, 0.4);
+    }
+  }
+  .is-active {
+    fill: rgba(219, 108, 101, 0.8);
+  }
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  width: 80px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 6px;
+  background-color: rgba(219, 108, 101, 0.5);
+  /* 覆蓋 bootstrap 的 opacity: 0 */
+  opacity: 1;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 576px) {
+    .wrapper {
+        .map svg {
+            height: 100%;
+        }
+        .weather {
+            margin-bottom: 20px;
+        }
+    }
+
+    .map svg {
+      width: 400px;
+      height:600px;
+    }
+}

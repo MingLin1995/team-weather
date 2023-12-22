@@ -1,0 +1,17 @@
+.footer {
+    position: relative;
+}
+
+#pokemon {
+    display: none;
+    position: absolute;
+    bottom: 150px;
+    right: 50px; 
+    width: 150px;
+}
+
+.pokemon-footer {
+    padding: 30px;
+    // border-radius: 50px 50px 100px 100px ;
+    margin: -20px;
+}

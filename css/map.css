@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@media screen and (min-width: 700px) {
+  .wrapper {
+    position: fixed;
+    top: 50px;
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    position: static;
+  }
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  flex-wrap: wrap;
+  margin-top: 70px;
+}
+
+.wrapper .weather {
+  display: inline-block;
+  color: #fff;
+}
+
+.map svg {
+  display: inline-block;
+  width: 800px;
+  height: 800px;
+}
+
+.map svg path {
+  transition: all 0.3s ease-in-out;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: transparent;
+  stroke: #db6c65;
+  stroke-width: 1.5px;
+  stroke-miterlimit: 10;
+  cursor: pointer;
+}
+
+.map svg path:hover {
+  fill: rgba(219, 108, 101, 0.4);
+}
+
+.map svg .is-active {
+  fill: rgba(219, 108, 101, 0.8);
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  width: 80px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 6px;
+  background-color: rgba(219, 108, 101, 0.5);
+  /* 覆蓋 bootstrap 的 opacity: 0 */
+  opacity: 1;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper .map svg {
+    height: 100%;
+  }
+  .wrapper .weather {
+    margin-bottom: 20px;
+  }
+  .map svg {
+    width: 400px;
+    height: 600px;
+  }
+}

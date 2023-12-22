@@ -1,0 +1,17 @@
+#weatherData1, #weatherData2, #weatherData3{
+    height: 170px; 
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+
+/* #36HImg1, #36HImg2, #36HImg3 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    transform: scale(0.5); 
+    opacity: 0.5;
+
+} */
