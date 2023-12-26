@@ -69,14 +69,14 @@ function updateDateTimeElements() {
 // setInterval(updateDateTimeElements, 1000);
 
 // 當天天氣
-// https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${key}
+// https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${key}
 
 function getWeatherData() {
   const nowDate = getCurrentDate();
   const nextDate = getNextDate();
   countyValue = countyElement.textContent;
   cityElement.textContent = countyValue;
-  const apiUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
+  const apiUrl = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
 
   return fetch(apiUrl, { method: "GET" })
     .then((response) => {
