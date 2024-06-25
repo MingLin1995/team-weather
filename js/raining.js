@@ -153,13 +153,13 @@ async function updateWeatherElements() {
 }
 
 // 36小時天氣
-// https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=${key}
+// https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=${key}
 
 function getWeatherData36H() {
   const nowDate = getCurrentDate();
   const nextDate = getNextDate();
   countyValue = countyElement.textContent;
-  const apiUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
+  const apiUrl = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=${apiKey}&locationName=${countyValue}&timeFrom=${nowDate}&timeTo=${nextDate}`;
   console.log("城市", countyValue);
   return fetch(apiUrl, { method: "GET" })
     .then((response) => {
